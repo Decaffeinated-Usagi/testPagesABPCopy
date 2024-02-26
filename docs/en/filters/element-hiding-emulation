@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>Element Hiding Emulation / Extended Selectors - ABP Test Pages</title>
+  <link rel="stylesheet" href="/css/testpages.css?2563207377">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/abp-32.png?2563207377">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="/lib/utils.js?1757125310"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>Element Hiding Emulation / Extended Selectors</h2>
+      <p>Check that element hiding emulation functionality is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+<style>
+.ehe-properties {
+  width: 213px;
+}
+
+.ehe-chained {
+  width: 214px;
+}
+
+.ehe-case {
+  width: 215px;
+}
+
+.ehe-wildcard {
+  cursor: pointer;
+}
+
+.ehe-regex1 {
+  width: 121px;
+}
+
+.ehe-regex2 {
+  width: 125px;
+}
+
+.ehe-regex3 {
+  width: 126px;
+}
+</style>
+
+
+
+<section id="basic-abp-properties-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-basic-abp-properties-usage" id="basic-abp-properties-usage">Basic :-abp-properties() usage</h2>
+  <p>Test that an element hiding emulation filter using a :-abp-properties() selector hides its target.</p>
+  <div id="basic-abp-properties-usage-area" class="testcase-area">
+    <div id="basic-abp-properties-usage-fail-1" class="ehe-properties" data-expectedresult="fail" data-dp="fail" aria-label="basic-abp-properties-usage-fail">Target</div>
+    <div class="testcase-examplecontent" aria-label="basic-abp-properties-usage-example">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red element should be hidden and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="basic-abp-properties-usage-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#?#div:-abp-properties(width: 213px)</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="basic-abp-has-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-basic-abp-has-usage" id="basic-abp-has-usage">Basic :-abp-has() usage</h2>
+  <p>Test that an element hiding emulation filter using a :-abp-has() selector hides its target.</p>
+  <div id="basic-abp-has-usage-area" class="testcase-area">
+    <div id="basic-abp-has-usage-fail-1" data-expectedresult="fail" data-dp="fail" aria-label="basic-abp-has-usage-fail">
+      <div>
+        <span class="ehe-abp-has">Target</span>
+      </div>
+    </div>
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red element should be hidden and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="basic-abp-has-usage-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#?#div:-abp-has(>div>span.ehe-abp-has)</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="basic-has-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-basic-has-usage" id="basic-has-usage">Basic :has() usage</h2>
+  <p>Test that an element hiding emulation filter using a :has() selector hides its target.</p>
+  <div id="basic-has-usage-area" class="testcase-area">
+    <div id="basic-has-usage-fail-1" data-expectedresult="fail" data-dp="fail">
+      <div>
+        <span class="ehe-has">Target</span>
+      </div>
+    </div>
+    <div class="testcase-examplecontent" aria-label="basic-has-usage-example">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red element should be hidden and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="basic-has-usage-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#?#div:has(>div>span.ehe-has)</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="basic-has-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-basic-has-usage" id="basic-has-usage">Basic :has() usage</h2>
+  <p>Test that an element hiding emulation filter using a :has() selector hides its target.</p>
+  <div id="basic-has-usage-area" class="testcase-area">
+    <div id="basic-has-usage-fail-1" data-expectedresult="fail" data-dp="fail">
+      <div>
+        <span class="ehe-has">Target</span>
+      </div>
+    </div>
+    <div class="testcase-examplecontent" aria-label="basic-has-usage-example">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red element should be hidden and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="basic-has-usage-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#?#div:has(>div>span.ehe-has)</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="basic-abp-contains-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-basic-abp-contains-usage" id="basic-abp-contains-usage">Basic :-abp-contains() usage</h2>
+  <p>Test that an element hiding emulation filter using a :-abp-contains() selector hides its target.</p>
+  <div id="basic-abp-contains-usage-area" class="testcase-area">
+    <span id="basic-abp-contains-usage-fail-1" data-expectedresult="fail" data-dp="fail" aria-label="basic-abp-contains-usage-fail">ehe-contains-target</span>
+    <div class="testcase-examplecontent" aria-label="basic-abp-contains-usage-example">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red element should be hidden and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="basic-abp-contains-usage-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#?#span:-abp-contains(ehe-contains-target)</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="basic-xpath-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-basic-xpath-usage" id="basic-xpath-usage">Basic :xpath() usage</h2>
+  <p>Test that an element hiding emulation filter using a :xpath() selector hides its target.</p>
+  <div id="basic-xpath-usage-area" class="testcase-area">
+    <span id="basic-xpath-usage-fail" data-expectedresult="fail" data-dp="fail">Target</span>
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red element should be hidden and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="basic-xpath-usage-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#?#span:xpath(//*[@id="basic-xpath-usage-fail"])</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="basic-has-text-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-basic-has-text-usage" id="basic-has-text-usage">Basic :has-text() usage</h2>
+  <p>Test that an element hiding emulation filter using a :-has-text() selector hides its target.</p>
+  <div id="basic-has-text-usage-area" class="testcase-area">
+    <span id="basic-has-text-usage-fail-1" data-expectedresult="fail" data-dp="fail">ehe-has-text</span>
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red element should be hidden and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="basic-has-text-usage-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#?#span:has-text(ehe-has-text)</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="chained-extended-selectors-section" class="testcase-panel">
+  <h2 aria-label="test-case-chained-extended-selectors" id="chained-extended-selectors">Chained extended selectors</h2>
+  <p>Test that element hiding emulation filter using several of the extended selectors hides its target.</p>
+  <div id="chained-extended-selectors-area" class="testcase-area">
+    <div id="chained-extended-selectors-fail-1" data-expectedresult="fail" data-dp="fail" aria-label="chained-extended-selectors-fail">
+      <div class="ehe-chained">Target</div>
+    </div>
+    <div class="testcase-examplecontent" aria-label="chained-extended-selectors-example">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red element should be hidden and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="chained-extended-selectors-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#?#div:-abp-has(> div:-abp-properties(width: 214px))</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="case-insensitive-extended-selectors-section" class="testcase-panel">
+  <h2 aria-label="test-case-case-insensitive-extended-selectors" id="case-insensitive-extended-selectors">Case insensitive extended selectors</h2>
+  <p>Test that an element hiding emulation filter is case insensitive and still hides its target.</p>
+  <div id="case-insensitive-extended-selectors-area" class="testcase-area">
+    <div id="case-insensitive-extended-selectors-fail-1" class="ehe-case" data-expectedresult="fail" data-dp="fail" aria-label="case-insensitive-extended-selectors-fail">Target</div>
+    <div class="testcase-examplecontent" aria-label="case-insensitive-extended-selectors-example">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red element should be hidden and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="case-insensitive-extended-selectors-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#?#div:-abp-properties(WiDtH: 215px)</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="wildcard-in-extended-selector-section" class="testcase-panel">
+  <h2 aria-label="test-case-wildcard-in-extended-selector" id="wildcard-in-extended-selector">Wildcard in extended selector</h2>
+  <p>Test that an element hiding emulation filter using wildcards still hides its target.</p>
+  <div id="wildcard-in-extended-selector-area" class="testcase-area">
+    <div id="wildcard-in-extended-selector-fail-1" class="ehe-wildcard" data-expectedresult="fail" data-dp="fail" aria-label="wildcard-in-extended-selector-fail">Target</div>
+    <div class="testcase-examplecontent" aria-label="wildcard-in-extended-selector-example">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red element should be hidden and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="wildcard-in-extended-selector-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#?#div:-abp-properties(cursor:*)</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="regular-expression-in-abp-properties-section" class="testcase-panel">
+  <h2 aria-label="test-case-regular-expression-in-abp-properties" id="regular-expression-in-abp-properties">Regular expression in :-abp-properties()</h2>
+  <p>Test that an element hiding emulation filter using regular expressions still hides its target.</p>
+  <div id="regular-expression-in-abp-properties-area" class="testcase-area">
+    <div id="regular-expression-in-abp-properties-fail-1" class="ehe-regex1" data-expectedresult="fail" data-dp="fail" aria-label="regular-expression-in-abp-properties-fail">Target</div>
+    <div id="regular-expression-in-abp-properties-fail-2" class="ehe-regex2" data-expectedresult="fail" data-dp="fail" aria-label="regular-expression-in-abp-properties-fail">Target</div>
+    <div class="testcase-examplecontent ehe-regex3">Not a target</div>
+    <div class="testcase-examplecontent" aria-label="regular-expression-in-abp-properties-example">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>Both red target elements should be hidden and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="regular-expression-in-abp-properties-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#?#div:-abp-properties(/width: 12[1-5]px;/)</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="regular-expression-in-abp-contains-section" class="testcase-panel">
+  <h2 aria-label="test-case-regular-expression-in-abp-contains" id="regular-expression-in-abp-contains">Regular expression in :-abp-contains()</h2>
+  <p>Test that an element hiding emulation filter using regular expressions still hides its target.</p>
+  <div id="regular-expression-in-abp-contains-area" class="testcase-area">
+    <div id="regular-expression-in-abp-contains-fail-1" data-expectedresult="fail" data-dp="fail" aria-label="regular-expression-in-abp-contains-fail">ehe-containsregex1</div>
+    <div id="regular-expression-in-abp-contains-fail-2" data-expectedresult="fail" data-dp="fail" aria-label="regular-expression-in-abp-contains-fail">ehe-containsregex2</div>
+    <div class="testcase-examplecontent" aria-label="regular-expression-in-abp-contains-example">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>Both red target elements should be hidden and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="regular-expression-in-abp-contains-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#?#div > div:-abp-contains(/ehe-containsregex\d/)</pre></li>
+  </ul>
+</section>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

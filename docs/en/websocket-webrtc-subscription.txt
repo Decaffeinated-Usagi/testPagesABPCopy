@@ -1,0 +1,7 @@
+[Adblock Plus 2.0]
+
+! filters/websocket
+$websocket,domain=testpages.adblockplus.org
+
+! filters/webrtc
+$webrtc,domain=testpages.adblockplus.org

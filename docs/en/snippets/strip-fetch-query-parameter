@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>strip-fetch-query-parameter - ABP Test Pages</title>
+  <link rel="stylesheet" href="/css/testpages.css?3119113068">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/abp-32.png?3119113068">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="/lib/utils.js?571355112"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>strip-fetch-query-parameter</h2>
+      <p>Check that the strip-fetch-query-parameter snippet is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="basic-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-basic-usage" id="basic-usage">Basic usage</h2>
+  <p>Test that basic usage of the snippet works as expected.</p>
+  <div id="basic-target" class="testcase-area">
+    <div class="testcase-examplecontent" aria-label="basic-usage-example">Example Content</div>
+    <div class="testcase-waiting-content" aria-label="basic-usage-waiting">Waiting 500ms to trigger snippet...</div>
+    <div class="testcase-expected-view">basicAllowed was called.</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The script should display a green element and not a red element to the test case above.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="basic-usage-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#$#strip-fetch-query-parameter basicBlocked testpages.adblockplus.org</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="other-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-other-usage" id="other-usage">Other usage</h2>
+  <p>Test that other usage of the snippet works as expected.</p>
+  <div id="other-target" class="testcase-area">
+    <div class="testcase-examplecontent" aria-label="other-usage-example">Example Content</div>
+    <div class="testcase-waiting-content">Waiting 500ms to trigger snippet...</div>
+    <div class="testcase-expected-view">otherAllowed1 was called.</div>
+    <div class="testcase-expected-view">otherAllowed2 was called.</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The script should display two green elements to the test case above.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="other-usage-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#$#strip-fetch-query-parameter otherAllowed2 other-domain</pre></li>
+  </ul>
+</section>
+
+<script>
+  "use strict";
+
+  function handleResponseBasic(response) {
+    if (response.url.includes("basicBlocked")) {
+      let element = document.createElement("div");
+      element.setAttribute("data-expectedresult", "fail");
+      element.setAttribute("aria-label", "other-usage-fail");
+      element.innerHTML = "Failed. basicBlocked was called.";
+      document.getElementById("basic-target").appendChild(element);
+    }
+    if (response.url.includes("basicAllowed")) {
+      let element = document.createElement("div");
+      element.setAttribute("data-expectedresult", "pass");
+      element.innerHTML = "basicAllowed was called.";
+      document.getElementById("basic-target").appendChild(element);
+    }
+  }
+
+  function handleResponseOther(response) {
+    for (let param of ["otherAllowed1", "otherAllowed2"]) {
+      if (response.url.includes(param)) {
+        let element = document.createElement("div");
+        element.setAttribute("data-expectedresult", "pass");
+        element.innerHTML = `${param} was called.`;
+        document.getElementById("other-target").appendChild(element);
+      }
+    }
+  }
+
+  setTimeout(() => {
+    removeWaitingContent(); // eslint-disable-line no-undef
+
+    let url = "https://testpages.adblockplus.org/testfiles/strip-fetch-query-parameter/foo.txt";
+    fetch(`${url}?basicBlocked=1&basicAllowed=2`).then(handleResponseBasic);
+    fetch(`${url}?otherAllowed1=1&otherAllowed2=2`).then(handleResponseOther);
+  }, 500);
+</script>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

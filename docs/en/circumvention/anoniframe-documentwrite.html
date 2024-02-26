@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>Anonymous frame document.write() - ABP Test Pages</title>
+  <link rel="stylesheet" href="../../css/testpages_1860532257.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../images/abp-32.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="../../lib/utils.js"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>Anonymous frame document.write()</h2>
+      <p>Check that anonymous fame document.write() functionality is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="anonymous-frame-document-write-section" class="testcase-panel">
+  <h2 aria-label="test-case-anonymous-frame-document-write" id="anonymous-frame-document-write">Anonymous frame document.write()</h2>
+  <p>Top frame</p>
+  <div id="anonymous-frame-document-write-area-1" class="testcase-area">
+    <span class="testcase-circ-anoniframe-docwrite" data-expectedresult="fail" data-dp="fail">This element should be blocked</span>
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <p>Sub frame (element.appendChild)</p>
+  <div id="anonymous-frame-document-write-area-2" class="testcase-area">
+    <iframe id="append" dp-data="append"></iframe>
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <p>Sub frame (document.write)</p>
+  <div id="anonymous-frame-document-write-area-3" class="testcase-area">
+    <iframe id="write" dp-data="write"></iframe>
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The top frame element should be blocked, and the text in both sub frames should be hidden.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="anonymous-frame-document-write-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org##.testcase-circ-anoniframe-docwrite</pre></li>
+  </ul>
+</section>
+
+<style>
+iframe {
+  overflow: hidden;
+  width: 200px;
+  height: 200px;
+}
+
+.expected-view iframe {
+  width: 98px;
+  height: 98px;
+  padding: 98px;
+}
+</style>
+
+<script>
+  "use strict";
+
+  let iframe = document.getElementById("append");
+  iframe.addEventListener("load", () => {
+    let span = document.createElement("span");
+    span.className = "testcase-circ-anoniframe-docwrite";
+    span.setAttribute("data-expectedresult", "fail");
+    span.setAttribute("data-dp", "fail");
+    span.id = "anonymous-frame-document-write-fail-1";
+    span.textContent = "This text should be hidden";
+    iframe.contentDocument.body.appendChild(span);
+  });
+
+  let doc = document.getElementById("write").contentDocument;
+  doc.open();
+  doc.write("<span id='anonymous-frame-document-write-fail-2' class='testcase-circ-anoniframe-docwrite' " +
+            "data-expectedresult='blocked' data-dp='fail'>This text should be hidden</span>");
+  doc.close();
+</script>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>Element Hiding Emulation Inversion - ABP Test Pages</title>
+  <link rel="stylesheet" href="/css/testpages.css?517071378">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/abp-32.png?517071378">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="/lib/utils.js?1755278372"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>Element Hiding Emulation Inversion</h2>
+      <p>Check that element hiding emulation inversion functionality is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+<style>
+
+.ehei-properties {
+  height: 50px;
+}
+
+.ehei-properties-not-hide {
+  width: 238px;
+}
+
+.ehei-has {
+  width: 253px;
+}
+
+.ehei-has-not-hide {
+  height: 52px;
+}
+
+.ehei-contains {
+  height: 70px;
+}
+
+.ehei-chained-parent {
+  height: 72px;
+}
+
+.ehei-chained {
+  width: 198px;
+}
+
+.ehei-case {
+  height: 78px;
+}
+
+.ehei-case-not-hide {
+  width: 209px;
+}
+
+.ehei-wildcard {
+  height: 83px;
+}
+
+.ehei-wildcard-not-hide {
+  cursor: pointer;
+}
+
+.ehei-regex {
+  height: 77px;
+}
+
+.ehei-regex1 {
+  width: 116px;
+}
+
+.ehei-regex2 {
+  width: 110px;
+}
+
+.ehei-regex3 {
+  width: 113px;
+}
+
+.ehei-regex4 {
+  width: 115px;
+}
+
+.ehei-contains-regex {
+  height: 76px;
+}
+
+</style>
+
+
+
+<section id="basic-not-abp-properties-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-basic-not-abp-properties-usage" id="basic-not-abp-properties-usage">Basic :not(:-abp-properties()) usage</h2>
+  <p>Test that an element hiding emulation filter using a :not(:-abp-properties()) selector hides its target.</p>
+  <div id="basic-not-abp-properties-usage-area" class="testcase-area" >
+    <div id="basic-not-abp-properties-usage-fail" class="ehei-properties" data-expectedresult="fail" data-dp="fail" aria-label="basic-not-abp-properties-usage-fail">Target</div>
+    <div  class="testcase-examplecontent ehei-properties ehei-properties-not-hide" aria-label="basic-not-abp-properties-usage-example">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red element should be hidden and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="basic-not-abp-properties-usage-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#?#.ehei-properties:not(:-abp-properties(width: 238px))</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="basic-not-abp-has-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-basic-not-abp-has-usage" id="basic-not-abp-has-usage">Basic :not(:-abp-has()) usage</h2>
+  <p>Test that an element hiding emulation filter using a :not(:-abp-has()) selector hides its target.</p>
+  <div id="basic-not-abp-has-usage-area" class="testcase-area">
+    <div id="basic-not-abp-has-usage-fail" class="ehei-has" data-expectedresult="fail" data-dp="fail" aria-label="basic-not-abp-has-usage-fail">
+      Target
+    </div>
+    <div class="testcase-examplecontent ehei-has" aria-label="basic-not-abp-has-usage-example">
+      <span class="ehei-has-not-hide">Example Content</span>
+    </div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red element should be hidden and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="basic-not-abp-has-usage-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#?#.ehei-has:not(:-abp-has(span.ehei-has-not-hide))</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="basic-not-abp-contains-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-basic-not-abp-contains-usage" id="basic-not-abp-contains-usage">Basic :not(:-abp-contains()) usage</h2>
+  <p>Test that an element hiding emulation filter using a not(:-abp-contains()) selector hides its target.</p>
+  <div id="basic-not-abp-contains-usage-area" class="testcase-area">
+    <span id="basic-not-abp-contains-usage-fail" class="ehei-contains" data-expectedresult="fail" data-dp="fail" aria-label="basic-not-abp-contains-usage-fail">Target</span>
+    <span class="testcase-examplecontent ehei-contains" aria-label="basic-not-abp-contains-usage-example">example-content</span>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red element should be hidden and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="basic-not-abp-contains-usage-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#?#.ehei-contains:not(span:-abp-contains(example-content))</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="chained-extended-selectors-with-not-selector-section" class="testcase-panel">
+  <h2 aria-label="test-case-chained-extended-selectors-with-not-selector" id="chained-extended-selectors-with-not-selector">Chained extended selectors with not() selector</h2>
+  <p>Test that element hiding emulation filter using several of the extended selectors and not() selector hides its target.</p>
+  <div id="chained-extended-selectors-with-not-selector-area" class="testcase-area">
+    <div id="chained-extended-selectors-with-not-selector-fail-1" class="ehei-chained-parent" data-expectedresult="fail" data-dp="fail" aria-label="chained-extended-selectors-with-not-selector-fail">
+      Target
+    </div>
+    <div class="testcase-examplecontent ehei-chained-parent" aria-label="chained-extended-selectors-with-not-selector-example">
+      <div class="ehei-chained">Example Content</div>
+    </div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red element should be hidden and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="chained-extended-selectors-with-not-selector-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#?#.ehei-chained-parent:not(:-abp-has(> div:-abp-properties(width: 198px)))</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="case-insensitive-extended-selectors-with-not-selector-section" class="testcase-panel">
+  <h2 aria-label="test-case-case-insensitive-extended-selectors-with-not-selector" id="case-insensitive-extended-selectors-with-not-selector">Case insensitive extended selectors with not() selector</h2>
+  <p>Test that an element hiding emulation filter is case insensitive and still hides its target.</p>
+  <div id="case-insensitive-extended-selectors-with-not-selector-area" class="testcase-area">
+    <div id="case-insensitive-extended-selectors-with-not-selector-fail" class="ehei-case" data-expectedresult="fail" data-dp="fail" aria-label="case-insensitive-extended-selectors-with-not-selector-fail">Target</div>
+    <div class="testcase-examplecontent ehei-case ehei-case-not-hide" aria-label="case-insensitive-extended-selectors-with-not-selector-example">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red element should be hidden and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="case-insensitive-extended-selectors-with-not-selector-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#?#.ehei-case:not(:-abp-properties(WiDtH: 209px))</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="wildcard-in-extended-selector-combined-with-not-selector-section" class="testcase-panel">
+  <h2 aria-label="test-case-wildcard-in-extended-selector-combined-with-not-selector" id="wildcard-in-extended-selector-combined-with-not-selector">Wildcard in extended selector combined with :not() selector</h2>
+  <p>Test that an element hiding emulation filter using wildcards still not hides its target.</p>
+  <div id="wildcard-in-extended-selector-combined-with-not-selector-area" class="testcase-area">
+    <div id="wildcard-in-extended-selector-combined-with-not-selector-fail" class="ehei-wildcard" data-expectedresult="fail" data-dp="fail" aria-label="wildcard-in-extended-selector-combined-with-not-selector-fail">Target</div>
+    <div class="testcase-examplecontent ehei-wildcard ehei-wildcard-not-hide" aria-label="wildcard-in-extended-selector-combined-with-not-selector-example">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red element should be hidden and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="wildcard-in-extended-selector-combined-with-not-selector-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#?#.ehei-wildcard:not(:-abp-properties(cursor:*))</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="regular-expression-in-not-abp-properties-section" class="testcase-panel">
+  <h2 aria-label="test-case-regular-expression-in-not-abp-properties" id="regular-expression-in-not-abp-properties">Regular expression in :not(:-abp-properties())</h2>
+  <p>Test that an element hiding emulation filter using regular expressions still hides its target.</p>
+  <div id="regular-expression-in-not-abp-properties-area" class="testcase-area">
+    <div id="regular-expression-in-not-abp-properties-fail-1" class="ehei-regex ehei-regex1" data-expectedresult="fail" data-dp="fail" aria-label="regular-expression-in-not-abp-properties-fail">Target</div>
+    <div id="regular-expression-in-not-abp-properties-fail-2" class="ehei-regex ehei-regex2" data-expectedresult="fail" data-dp="fail" aria-label="regular-expression-in-not-abp-properties-fail">Target</div>
+    <div class="testcase-examplecontent ehei-regex ehei-regex3">Not a target</div>
+    <div class="testcase-examplecontent ehei-regex ehei-regex4" aria-label="regular-expression-in-not-abp-properties-example">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>Both red target elements should be hidden and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="regular-expression-in-not-abp-properties-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#?#.ehei-regex:not(:-abp-properties(/width: 11[1-5]px;/))</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="regular-expression-in-not-abp-contains-section" class="testcase-panel">
+  <h2 aria-label="test-case-regular-expression-in-not-abp-contains" id="regular-expression-in-not-abp-contains">Regular expression in :not(:-abp-contains())</h2>
+  <p>Test that an element hiding emulation filter using regular expressions still hides its target.</p>
+  <div id="regular-expression-in-not-abp-contains-area" class="testcase-area">
+    <span id="regular-expression-in-not-abp-contains-fail-1" class="ehei-contains-regex" data-expectedresult="fail" data-dp="fail" aria-label="regular-expression-in-not-abp-contains-fail">ehei-containsregextarget</span>
+    <span id="regular-expression-in-not-abp-contains-fail-2" class="ehei-contains-regex" data-expectedresult="fail" data-dp="fail" aria-label="regular-expression-in-not-abp-contains-fail">ehei-containsregextarget2</span>
+    <span class="testcase-examplecontent ehei-contains-regex">example-contentregex1</span>
+    <span class="testcase-examplecontent ehei-contains-regex" aria-label="regular-expression-in-not-abp-contains-example">example-contentregex2</span>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>Both red target elements should be hidden and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="regular-expression-in-not-abp-contains-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#?#.ehei-contains-regex:not(span:-abp-contains(/example-contentregex\d/))</pre></li>
+  </ul>
+</section>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

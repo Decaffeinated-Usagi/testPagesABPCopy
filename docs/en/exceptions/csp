@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>CSP Exception - ABP Test Pages</title>
+  <link rel="stylesheet" href="/css/testpages.css?2838617082">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/abp-32.png?2838617082">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="/lib/utils.js?3944471155"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>CSP Exception</h2>
+      <p>Check that usage of the $csp filter option in an exception is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="exception-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-exception-usage" id="exception-usage">Exception usage</h2>
+  <p>Test that the $csp filter option in an exception works.</p>
+  <div id="exception-usage-area" class="testcase-area">
+    <div id="unblock-javascript" data-expectedresult="pass"></div>
+    <div class="testcase-expected-view"><img src="/images/expected.png?3787051749"></div>
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The green image containing the white square should be blocked.</li>
+    <li>Add filter #2.</li>
+    <li>The the green image containing the white square should become unblocked.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="exception-usage-filters" class="testcase-filters">
+    <li><pre>||testpages.adblockplus.org^$csp=script-src https://testpages.adblockplus.org/lib/utils.js</pre></li>
+    <li><pre>@@||testpages.adblockplus.org^$csp</pre></li>
+  </ul>
+</section>
+
+<script>
+  "use strict";
+
+  let image = document.createElement("img");
+  image.src = "/testfiles/csp_exception/image.png";
+  document.getElementById("unblock-javascript").appendChild(image);
+</script>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>abort-current-inline-script - ABP Test Pages</title>
+  <link rel="stylesheet" href="/css/testpages.css?372625444">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/abp-32.png?372625444">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="/lib/utils.js?709575085"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>abort-current-inline-script</h2>
+      <p>Check that the abort-current-inline-script snippet is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="basic-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-basic-usage" id="basic-usage">Basic usage</h2>
+  <p>Test that basic usage of the snippet works as expected.</p>
+  <div id="basic-target" class="testcase-area">
+    <div class="testcase-examplecontent" aria-label="basic-usage-example">Example Content</div>
+    <div class="testcase-waiting-content" aria-label="basic-usage-waiting">Waiting 500ms to trigger snippet...</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The script should be aborted and not add a red element to the test case above.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="basic-usage-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#$#abort-current-inline-script console.group</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="search-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-search-usage" id="search-usage">Search usage</h2>
+  <p>Test that usage of the snippet with the optional search parameter works as expected.</p>
+  <div id="search-target" class="testcase-area">
+    <div class="testcase-examplecontent" aria-label="search-usage-example">Example Content</div>
+    <div class="testcase-waiting-content" aria-label="search-usage-waiting">Waiting 500ms to trigger snippet...</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The script should be aborted and not add a red element to the test case above.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="search-usage-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#$#abort-current-inline-script console.info acis-search</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="regex-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-regex-usage" id="regex-usage">Regex usage</h2>
+  <p>Test that usage of the snippet with the optional search parameter as a regex works as expected.</p>
+  <div id="regex-target" class="testcase-area">
+    <div class="testcase-examplecontent" aria-label="regex-usage-example">Example Content</div>
+    <div class="testcase-waiting-content" aria-label="regex-usage-waiting">Waiting 500ms to trigger snippet...</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The script should be aborted and not add a red element to the test case above.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="regex-usage-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#$#abort-current-inline-script console.warn '/acis-regex[1-2]/'</pre></li>
+  </ul>
+</section>
+
+<script>
+  "use strict";
+
+  function injectScript(id, code) {
+    let script = document.createElement("script");
+    script.textContent = `
+      (function()
+      {
+        ${code}
+        let failElement = document.createElement("div");
+        failElement.textContent = "Failed. Script ran and was applied to the page.";
+        failElement.setAttribute("data-expectedresult", "fail");
+        failElement.setAttribute("aria-label", "regex-usage-fail");
+        document.getElementById("${id}-target").appendChild(failElement);
+        console.log('Failed. Script "${id}" ran completely and was applied to the page.');
+      })();`;
+    document.body.appendChild(script);
+  }
+
+  setTimeout(() => {
+    removeWaitingContent(); // eslint-disable-line no-undef
+
+    injectScript("basic", 'console.group("abort-current-inline-script");');
+    injectScript("search", 'console.info("acis-search");');
+    injectScript("regex", 'console.warn("acis-regex1");');
+  }, 500);
+</script>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

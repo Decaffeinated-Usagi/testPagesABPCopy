@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>WebRTC Exception - ABP Test Pages</title>
+  <link rel="stylesheet" href="/css/testpages.css?1211853483">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/abp-32.png?1211853483">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="/lib/utils.js?2290269960"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>WebRTC Exception</h2>
+      <p>Check that usage of the $webrtc filter option in an exception is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="exception-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-exception-usage" id="exception-usage">Exception usage</h2>
+  <p>Test that the $webrtc filter option in an exception works.</p>
+  <div id="exception-usage-area" class="testcase-area">
+    <div id="testcase-status" class="testcase-trigger">Triggering WebRTC connection...</div>
+    <div class="testcase-expected-view">Passed. Connection was NOT blocked.</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filters #1 and #2.</li>
+    <li>Refresh page.</li>
+    <li>The connection should NOT be blocked and its state indicated in the test case above.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="exception-usage-filters" class="testcase-filters">
+    <li><pre>$webrtc,domain=testpages.adblockplus.org</pre></li>
+    <li><pre>@@$webrtc,domain=testpages.adblockplus.org</pre></li>
+  </ul>
+</section>
+
+<script>
+  "use strict";
+
+  function check(connection) {
+    let result = document.getElementById("testcase-status");
+    // If blocked by ABP, the signalingState is quickly set to "closed".
+    // When not blocked by ABP, the signalingState stays as "stable" for a while.
+    if (connection.signalingState === "closed") {
+      result.innerHTML = "Failed. Connection was blocked.";
+      result.setAttribute("data-expectedresult", "fail");
+    }
+    else {
+      result.innerHTML = "Passed. Connection was NOT blocked.";
+      result.setAttribute("data-expectedresult", "pass");
+    }
+  }
+
+  function doTest() {
+    if (typeof RTCPeerConnection == "undefined") {
+      if (typeof webkitRTCPeerConnection == "undefined") {
+        let output = document.getElementById("testcase-status");
+        output.innerHTML = "This test case is not supported in this browser.";
+        return;
+      }
+      RTCPeerConnection = webkitRTCPeerConnection; // eslint-disable-line no-global-assign, no-undef
+    }
+
+    let connection = new RTCPeerConnection({iceServers: [{urls: ["stun:example.com"]}]});
+    setTimeout(() => check(connection), 500);
+  }
+
+  doTest();
+</script>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

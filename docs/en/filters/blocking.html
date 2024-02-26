@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>Blocking - ABP Test Pages</title>
+  <link rel="stylesheet" href="../../css/testpages.css?151933066">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../images/abp-32.png?151933066">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="../../lib/utils.js?3185524898"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>Blocking</h2>
+      <p>Check that basic blocking functionality is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="full-path-section" class="testcase-panel">
+  <h2 aria-label="test-case-full-path" id="full-path">Full Path</h2>
+  <p>Test that a blocking filter describing a full path blocks its target.</p>
+  <div id="full-path-area" class="testcase-area">
+    <img id="full-path-fail-1" src="../../testfiles/blocking/full-path.png_3064528274" data-expectedresult="fail" data-dp="fail">
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red image should be blocked and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="full-path-filters" class="testcase-filters">
+    <li><pre>||testpages.adblockplus.org/testfiles/blocking/full-path.png</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="partial-path-section" class="testcase-panel">
+  <h2 aria-label="test-case-partial-path" id="partial-path">Partial Path</h2>
+  <p>Test that a blocking filter describing a partial path blocks its target.</p>
+  <div id="partial-path-area" class="testcase-area">
+    <img id="partial-path-fail-1" src="../../testfiles/blocking/partial-path/partial-path.png_3064528274" data-expectedresult="fail" data-dp="fail">
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red image should be blocked and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="partial-path-filters" class="testcase-filters">
+    <li><pre>/testfiles/blocking/partial-path/</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="wildcard-section" class="testcase-panel">
+  <h2 aria-label="test-case-wildcard" id="wildcard">Wildcard</h2>
+  <p>Test that a blocking filter describing a path with wildcards blocks its target.</p>
+  <div id="wildcard-area" class="testcase-area">
+    <img id="wildcard-fail-1" src="../../testfiles/blocking/wildcard/1/wildcard.png_3064528274" data-expectedresult="fail" data-dp="fail">
+    <img id="wildcard-fail-2" src="../../testfiles/blocking/wildcard/2/wildcard.png_3064528274" data-expectedresult="fail" data-dp="fail">
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red images should be blocked and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="wildcard-filters" class="testcase-filters">
+    <li><pre>/testfiles/blocking/wildcard/*/wildcard.png</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="dynamic-section" class="testcase-panel">
+  <h2 aria-label="test-case-dynamic" id="dynamic">Dynamic</h2>
+  <p>Test that a blocking filter describing a path of a resource that is later dynamically added to the page blocks its target.</p>
+  <div id="blocking-dynamic" class="testcase-area">
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red image should be blocked and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="dynamic-filters" class="testcase-filters">
+    <li><pre>/testfiles/blocking/dynamic.png</pre></li>
+  </ul>
+</section>
+
+<script>
+  "use strict";
+
+  let image = document.createElement("img");
+  image.src = "../../testfiles/blocking/dynamic.png";
+  image.setAttribute("data-expectedresult", "fail");
+  image.setAttribute("data-dp", "fail");
+  image.id = "dynamic-fail-1";
+
+  let area = document.getElementById("blocking-dynamic");
+  area.appendChild(image);
+</script>
+
+
+<!-- fix src here in this section-->
+<section id="deep-subdomains-section" class="testcase-panel">
+  <h2 aria-label="test-case-deep-subdomains" id="deep-subdomains">Deep subdomains</h2>
+  <p>Test that a blocking filter for a 3-component domain blocks a 4-component subdomain path.</p>
+  <div id="deep-subdomains-area" class="testcase-area">
+    <img id="deep-subdomains-fail-1" src="https://blocked.subdomain.abptestpages.org/testfiles/blocking/subdomain.png" data-expectedresult="fail" data-dp="fail">
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red images should be blocked and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="deep-subdomains-filters" class="testcase-filters">
+    <li><pre>||subdomain.abptestpages.org/testfiles/blocking/subdomain.png</pre></li>
+  </ul>
+</section>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

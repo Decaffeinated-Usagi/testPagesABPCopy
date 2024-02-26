@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>Subdocument Exception - ABP Test Pages</title>
+  <link rel="stylesheet" href="../../css/testpages_689112820.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../images/abp-32.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="../../lib/utils.js?587183310"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>Subdocument Exception</h2>
+      <p>Check that usage of the $subdocument filter option in an exception is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+<link rel="stylesheet" href="../../testfiles/subdocument_exception/stylesheet.css">
+
+
+
+<section id="exception-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-exception-usage" id="exception-usage">Exception usage</h2>
+  <p>Test that the $subdocument filter option in an exception works.</p>
+  <div id="exception-usage-area" class="testcase-area">
+    <iframe id="exception-usage-pass-1" src="../../testfiles/subdocument_exception/subdocument.html" style="border: 0; width: 100px; height: 100px;"></iframe>
+    <div class="testcase-expected-view" aria-label="exception-usage-expected">This should be a green element.</div>
+    <div id="exception-target" data-expectedresult="pass" data-dp="pass" aria-label="exception-usage-pass">This should be a green element.</div>
+    <div class="testcase-examplecontent" aria-label="exception-usage-example">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The element should not look red, and the subdocument should be blocked.</li>
+    <li>Add filter #2.</li>
+    <li>The element should still not look red, but the subdocument should become unblocked.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="exception-usage-filters" class="testcase-filters">
+    <li><pre>||testpages.adblockplus.org/testfiles/subdocument_exception/*</pre></li>
+    <li><pre>@@testpages.adblockplus.org/testfiles/subdocument_exception/$subdocument</pre></li>
+  </ul>
+</section>
+
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

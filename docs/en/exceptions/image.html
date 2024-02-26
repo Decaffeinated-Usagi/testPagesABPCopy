@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>Image Exception - ABP Test Pages</title>
+  <link rel="stylesheet" href="../../css/testpages_2382568346.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../images/abp-32.png?2382568346">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="../../lib/utils.js?3258497218"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>Image Exception</h2>
+      <p>Check that usage of the $image filter option in an exception is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+<link rel="stylesheet" href="../../testfiles/image_exception/stylesheet.css">
+
+
+
+<section id="basic-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-basic-usage" id="basic-usage">Basic usage</h2>
+  <p>Test that the $image filter option in an exception works.</p>
+  <div id="basic-usage-area" class="testcase-area">
+    <img id="basic-usage-pass-1" src="../../testfiles/image_exception/image.png" data-dp="pass" aria-label="basic-usage-pass">
+    <div class="testcase-expected-view"  aria-label="basic-usage-expected">This should be a green element.</div>
+    <div id="basic-usage-exception-target" data-expectedresult="pass" data-dp="pass" aria-label="basic-usage-pass">This should be a green element.</div>
+    <div class="testcase-examplecontent" aria-label="basic-usage-example">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The element should not look red, and the green image containing the white square should be blocked.</li>
+    <li>Add filter #2.</li>
+    <li>The element should still not look red, but the green image containing the white square should become unblocked.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="basic-usage-filters" class="testcase-filters">
+    <li><pre>||testpages.adblockplus.org/testfiles/image_exception/image.png</pre></li>
+    <li><pre>@@testpages.adblockplus.org/testfiles/image_exception/$image</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="deep-subdomain-exception-section" class="testcase-panel">
+  <h2 aria-label="test-case-deep-subdomain-exception" id="deep-subdomain-exception">Deep subdomain exception</h2>
+  <p>Test that an exception defined for a 3-component domain allows a 4-component domain resource.</p>
+  <div id="deep-subdomain-exception-area" class="testcase-area">
+    <img id="deep-subdomain-exception-pass-1" src="https://allowed.subdomain.abptestpages.org/testfiles/image_exception/subdomain.png" data-dp="pass" aria-label="deep-subdomain-exception-pass">
+    <div class="testcase-expected-view"  aria-label="deep-subdomain-exception-expected">This should be a green element.</div>
+    <div id="deep-subdomain-exception-exception-target" data-expectedresult="pass" data-dp="pass" aria-label="deep-subdomain-exception-pass">This should be a green element.</div>
+    <div class="testcase-examplecontent" aria-label="deep-subdomain-exception-example">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The element should not look red, and the green image containing the white square should be blocked.</li>
+    <li>Add filter #2.</li>
+    <li>The element should still not look red, but the green image containing the white square should become unblocked.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="deep-subdomain-exception-filters" class="testcase-filters">
+    <li><pre>||allowed.subdomain.abptestpages.org/testfiles/image_exception/subdomain.png</pre></li>
+    <li><pre>@@||subdomain.abptestpages.org/testfiles/image_exception/$image</pre></li>
+  </ul>
+</section>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

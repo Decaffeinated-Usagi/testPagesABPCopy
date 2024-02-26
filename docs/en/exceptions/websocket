@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>WebSocket Exception - ABP Test Pages</title>
+  <link rel="stylesheet" href="/css/testpages.css?599131376">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/abp-32.png?599131376">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="/lib/utils.js?2960873484"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>WebSocket Exception</h2>
+      <p>Check that usage of the $websocket filter option in an exception is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="exception-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-exception-usage" id="exception-usage">Exception usage</h2>
+  <p>Test that the $websocket filter option in an exception works.</p>
+  <div id="exception-usage-area" class="testcase-area">
+    <div id="testcase-status" class="testcase-trigger" aria-label="trigger">Triggering WebSocket connection...</div>
+    <div class="testcase-expected-view">Passed. Connection was NOT blocked.</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Check that the connection is NOT blocked before adding the filters. That means the testcase above currently passes.</li>
+    <li>Add filter #1 and refresh page.</li>
+    <li>Check that the connection is blocked and the testcase above fails.</li>
+    <li>Add filter #2 and refresh page.</li>
+    <li>The connection should NOT be blocked and its state indicated in the test case above.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="exception-usage-filters" class="testcase-filters">
+    <li><pre>$websocket,domain=testpages.adblockplus.org</pre></li>
+    <li><pre>@@$websocket,domain=testpages.adblockplus.org</pre></li>
+  </ul>
+</section>
+
+<script>
+  "use strict";
+
+  let url = "wss://testpages.adblockplus.org/websocket";
+  let websocket = new WebSocket(url);
+  websocket.onopen = function() {
+    websocket.send("Test message was echoed back");
+  };
+  websocket.onmessage = function() {
+    let result = document.getElementById("testcase-status");
+    result.innerHTML = "Passed. Connection was NOT blocked.";
+    result.setAttribute("data-expectedresult", "pass");
+    result.setAttribute("data-dp", "pass");
+    result.setAttribute("aria-label", "exception-usage-pass");
+  };
+  websocket.onerror = function() {
+    let result = document.getElementById("testcase-status");
+    result.innerHTML = "Failed. Connection was blocked.";
+    result.setAttribute("data-expectedresult", "fail");
+    result.setAttribute("data-dp", "fail");
+    result.setAttribute("aria-label", "exception-usage-fail");
+  };
+</script>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

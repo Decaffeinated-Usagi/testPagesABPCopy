@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>Header Exception - ABP Test Pages</title>
+  <link rel="stylesheet" href="/css/testpages.css?2826025409">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/abp-32.png?2826025409">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="/lib/utils.js?1621724918"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>Header Exception</h2>
+      <p>Check that usage of the $header filter option in an exception is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="image-header-exception-section" class="testcase-panel">
+  <h2 aria-label="test-case-image-header-exception" id="image-header-exception">Image header exception</h2>
+  <p>Test that the $header filter option in an exception works.</p>
+  <div id="image-header-exception-area" class="testcase-area">
+    <img id="image-header-exception-pass-1" src="/testfiles/header_exception/image.png?516994896">
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The green image containing the white square should be blocked.</li>
+    <li>Add filter #2.</li>
+    <li>Refresh page.</li>
+    <li>The green image containing the white square should become unblocked.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="image-header-exception-filters" class="testcase-filters">
+    <li><pre>||testpages.adblockplus.org/testfiles/header_exception/$header=content-type=image/png</pre></li>
+    <li><pre>@@testpages.adblockplus.org/testfiles/header_exception/$header=content-type</pre></li>
+  </ul>
+</section>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

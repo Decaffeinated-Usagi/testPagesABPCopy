@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>iFrame Exception - ABP Test Pages</title>
+  <link rel="stylesheet" href="/css/testpages.css?2604450740">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/abp-32.png?2604450740">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="/lib/utils.js?592736672"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>iFrame Exception</h2>
+      <p>Check that usage loading frames works with exceptions</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="iframe-content-rewritten-by-script-section" class="testcase-panel">
+  <h2 aria-label="test-case-iframe-content-rewritten-by-script" id="iframe-content-rewritten-by-script">iFrame content rewritten by script</h2>
+  <p>Test that allowlisting inside an iframe rewritten by a script works.</p>
+  <p>Note: This test does not work in Firefox.</p>
+  <div id="iframe-content-rewritten-by-script-area" class="testcase-area">
+    <iframe src="/testfiles/iframe_exception/expected.html" class="testcase-expected-view"></iframe>
+    <iframe id="rewrite-frame-id" src="/testfiles/iframe_exception/empty.html" class="testcase-nostyle"></iframe>
+    <div class="testcase-examplecontent" aria-label="iframe-content-rewritten-by-script-example">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1 and #2.</li>
+    <li>Refresh page.</li>
+    <li>iFrame content containing the green square should be blocked.</li>
+    <li>Add filter #3.</li>
+    <li>Refresh page.</li>
+    <li>iFrame content containing the green square should be unblocked.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="iframe-content-rewritten-by-script-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org/testfiles/iframe_exception/expected.png</pre></li>
+    <li><pre>##[alt="iframe-content-rewritten-by-script-placeholder"]</pre></li>
+    <li><pre>@@||testpages.adblockplus.org/testfiles/iframe_exception/empty.html^$document</pre></li>
+  </ul>
+</section>
+
+<script>
+  "use strict";
+
+  function writeIframe() {
+    let frameDocument = document.getElementById("rewrite-frame-id").contentWindow.document;
+    frameDocument.open("text/html");
+    frameDocument.write(`
+      <html>
+        
+        <body>
+          <img src="/testfiles/iframe_exception/expected.png?3547299019" alt="iframe-content-rewritten-by-script-placeholder"/>
+        </body>
+      </html>`);
+    frameDocument.close();
+
+    if (expectedParameter()) // eslint-disable-line no-undef
+      expectedPageView(); // eslint-disable-line no-undef
+  }
+
+  if (document.readyState == "complete")
+    writeIframe();
+  else
+    document.getElementById("rewrite-frame-id").addEventListener("load", writeIframe);
+</script>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

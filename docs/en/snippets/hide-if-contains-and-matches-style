@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>hide-if-contains-and-matches-style - ABP Test Pages</title>
+  <link rel="stylesheet" href="/css/testpages.css?807409137">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/abp-32.png?807409137">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="/lib/utils.js?2089654708"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>hide-if-contains-and-matches-style</h2>
+      <p>Check that the hide-if-contains-and-matches-style snippet is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="static-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-static-usage" id="static-usage">Static usage</h2>
+  <p>Test that basic usage of the snippet works as expected against a static target.</p>
+  <div id="static-usage-area" class="testcase-area">
+    <div class="testcase-examplecontent" aria-label="static-usage-example">Example Content</div>
+    <div id="isnfnv" data-expectedresult="fail"><div><span>Failed. Element is not hidden.</span><span class="label">hicamss</span></div></div>
+    <div class="testcase-expected-view"><div><span>Should not be hidden.</span></div></div>
+    <div id="lkvsaq" data-expectedresult="pass"><div><span>Should not be hidden.</span><span class="label" style="display: none;">hicamss</span></div></div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red element in the test case above should be hidden and the green one not hidden.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="static-usage-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#$#hide-if-contains-and-matches-style hicamss div[id] span.label /./ 'display: inline;'</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="dynamic-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-dynamic-usage" id="dynamic-usage">Dynamic usage</h2>
+  <p>Test that basic usage of the snippet works as expected against a dynamic target.</p>
+  <div id="dynamic-target" class="testcase-area">
+    <div class="testcase-examplecontent" aria-label="dynamic-usage-example">Example Content</div>
+    <div class="testcase-waiting-content">Waiting 500ms to trigger snippet...</div>
+    <div class="testcase-expected-view"><div><span>Should not be hidden.</span></div></div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red element added to the test case above should be hidden and the green one not hidden.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="dynamic-usage-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#$#hide-if-contains-and-matches-style hicamsd div[id] span.label /./ 'display: inline;'</pre></li>
+  </ul>
+</section>
+
+<script>
+  "use strict";
+
+  setTimeout(() => {
+    removeWaitingContent(); // eslint-disable-line no-undef
+
+    let ad = document.createElement("div");
+    ad.id = Math.random().toString(36).substring(2);
+    ad.setAttribute("data-expectedresult", "fail");
+    ad.setAttribute("aria-label", "dynamic-usage-fail");
+    ad.innerHTML = `<div><span>Failed. Script ran and was applied to the page.</span>
+      <span class='label'>hicamsd</span></div>`;
+
+    let result = document.createElement("div");
+    result.id = Math.random().toString(36).substring(2);
+    result.setAttribute("data-expectedresult", "pass");
+    result.innerHTML = `<div><span>Should not be hidden.</span>
+      <span class='label' style='display: none'>hicamsd</span></div>`;
+
+    let target = document.getElementById("dynamic-target");
+    target.appendChild(ad);
+    target.appendChild(result);
+  }, 500);
+</script>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

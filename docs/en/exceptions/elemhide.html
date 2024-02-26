@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>Elem Hide - ABP Test Pages</title>
+  <link rel="stylesheet" href="../../css/testpages_413423373.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../images/abp-32.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="../../lib/utils.js"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>Elem Hide</h2>
+      <p>Check that a filter using the $elemhide exception filter option is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="basic-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-basic-usage" id="basic-usage">Basic usage</h2>
+  <p>Test that a filter using the $elemhide filter option whitelists only hiding filters.</p>
+  <div id="basic-usage-area" class="testcase-area">
+    <img id="basic-usage-fail-1" src="../../testfiles/elemhide/basic/image_1419963291.png" data-expectedresult="fail" data-dp="fail">
+    <div class="testcase-expected-view">Exception target</div>
+    <div id="basic-usage-pass-1" class="ex-elemhide" data-expectedresult="pass" data-dp="pass">Exception target</div>
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1 and filter #2.</li>
+    <li>Refresh page.</li>
+    <li>Both the red image and exception target should be blocked.</li>
+    <li>Add filter #3.</li>
+    <li>The red image should still be blocked but exception target should become unblocked.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="basic-usage-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org##.ex-elemhide</pre></li>
+    <li><pre>||testpages.adblockplus.org/testfiles/elemhide/basic/*</pre></li>
+    <li><pre>@@testpages.adblockplus.org/en/exceptions/elemhide$elemhide</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="iframe-section" class="testcase-panel">
+  <h2 aria-label="test-case-iframe" id="iframe">iFrame</h2>
+  <p>Test that a filter using the $elemhide filter option whitelists a subframe.</p>
+  <div id="iframe-area" class="testcase-area">
+    <iframe id="test-frame" src="../../testfiles/elemhide/iframe/iframe.html" style="width: 100%; height: 200px;"></iframe>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Make sure the previous test case filters have been removed.</li>
+    <li>Add filter #1 and filter #2.</li>
+    <li>Refresh page.</li>
+    <li>Both the red image and exception target should be blocked.</li>
+    <li>Add filter #3.</li>
+    <li>The red image should still be blocked but exception target should become unblocked.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="iframe-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org##.targ-elemhide</pre></li>
+    <li><pre>||testpages.adblockplus.org/testfiles/elemhide/iframe/*.png</pre></li>
+    <li><pre>@@testpages.adblockplus.org/en/exceptions/elemhide$elemhide</pre></li>
+  </ul>
+</section>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

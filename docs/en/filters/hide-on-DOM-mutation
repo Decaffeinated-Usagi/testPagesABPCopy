@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>Block on DOM Mutation - ABP Test Pages</title>
+  <link rel="stylesheet" href="/css/testpages.css?421583225">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/abp-32.png?421583225">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="/lib/utils.js?2961955994"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>Block on DOM Mutation</h2>
+      <p>Check that a filter using simple selectors work properly on DOM Mutation.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="input-section" class="testcase-panel">
+  <h2 aria-label="test-case-input" id="input">input</h2>
+  <p>Check that a filter using #input selectors work properly on DOM Mutation.</p>
+  <div id="input-script-target" class="testcase-area">
+    <input id="input-eh" data-expectedresult="fail" data-dp="fail" aria-label="input-fail" ></inside>
+    <div class="testcase-examplecontent" aria-label="input-example"></div>
+    <div class="testcase-waiting-content">Waiting 500ms to trigger snippet...</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>input should be blocked and the red element should not be added to the page.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="input-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#?#input</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="aside-section" class="testcase-panel">
+  <h2 aria-label="test-case-aside" id="aside">aside</h2>
+  <p>Check that a filter using #aside selectors work properly on DOM Mutation.</p>
+  <div id="aside-script-target" class="testcase-area">
+    <aside id="aside-eh" data-expectedresult="fail" data-dp="fail" aria-label="aside-fail" > Static Target </aside>
+    <div class="testcase-examplecontent" aria-label="aside-example"> Example Content </div>
+    <div class="testcase-waiting-content">Waiting 500ms to trigger snippet...</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>aside should be blocked and the red element should not be added to the page.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="aside-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#?#aside</pre></li>
+  </ul>
+</section>
+<script>
+  "use strict";
+
+  setTimeout(() => {
+    removeWaitingContent(); // eslint-disable-line no-undef
+    const testCases = ["aside", "input"];
+    testCases.forEach(elementType => {
+      let target = document.getElementById(`${elementType}-script-target`);
+      let newElement = document.createElement(elementType);
+      newElement.innerHTML = "Failed.";
+      newElement.setAttribute("data-expectedresult", "fail");
+      newElement.setAttribute("aria-label", "script-fail");
+      newElement.id = `${elementType}-eh`;
+      target.appendChild(newElement);
+    });
+  }, 500);
+</script>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

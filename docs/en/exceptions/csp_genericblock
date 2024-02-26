@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>CSP Generic Block Exception - ABP Test Pages</title>
+  <link rel="stylesheet" href="/css/testpages.css?1651191389">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/abp-32.png?1651191389">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="/lib/utils.js?1523396795"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>CSP Generic Block Exception</h2>
+      <p>Check that usage of the $csp filter option in a genericblock exception is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="genericblock-exception-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-genericblock-exception-usage" id="genericblock-exception-usage">Genericblock Exception usage</h2>
+  <p>Test that the $csp filter option in a genericblock exception works.</p>
+  <div id="genericblock-exception-usage-area" class="testcase-area">
+    <div id="genericblock-javascript" data-expectedresult="pass"></div>
+    <div class="testcase-expected-view"><img src="/images/expected.png?3346456264"></div>
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The green image containing the white square should be blocked.</li>
+    <li>Add filter #2.</li>
+    <li>The the green image containing the white square should become unblocked.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="genericblock-exception-usage-filters" class="testcase-filters">
+    <li><pre>||testpages.adblockplus.org^$csp=script-src https://testpages.adblockplus.org/lib/utils.js</pre></li>
+    <li><pre>@@||testpages.adblockplus.org^$genericblock</pre></li>
+  </ul>
+</section>
+
+<script>
+  "use strict";
+
+  let image = document.createElement("img");
+  image.src = "/testfiles/csp_exception/image.png";
+  document.getElementById("genericblock-javascript").appendChild(image);
+</script>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

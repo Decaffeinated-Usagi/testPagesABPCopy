@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>ABP Kit Allowlist Domains - ABP Test Pages</title>
+  <link rel="stylesheet" href="/css/testpages.css?611587896">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/abp-32.png?611587896">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="/lib/utils.js?486944562"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>ABP Kit Allowlist Domains</h2>
+      <p>Check that a filters are not applied when domain is added to Allowlist Domains in ABP Kit.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section class="testcase-panel">
+  <h2 aria-label="test-case-dynamic" id="dynamic">Dynamic</h2>
+  <p>Image, dynamic target.</p>
+  <div id="image-dynamic" class="testcase-area">
+    <div class="testcase-examplecontent" aria-label="dynamic-example">Example Content</div>
+  </div>
+</section>
+
+
+
+<section class="testcase-panel">
+  <h2 aria-label="test-case-static-domain" id="static-domain">Static Domain</h2>
+  <p>Static target with excluded.</p>
+  <div class="testcase-area">
+    <div class="testcase-examplecontent" aria-label="static-domain-example">Example Content</div>
+    <img src="/testfiles/domain/static/excluded/image.png?2593219841">
+    <img src="/testfiles/domain/static/target/image.png?2593219841" data-expectedresult="fail" aria-label="static-domain-fail">
+  </div>
+</section>
+
+
+
+<section class="testcase-panel">
+  <h2 aria-label="test-case-image-static" id="image-static">Image Static</h2>
+  <p>Image on a static target.</p>
+  <div class="testcase-area" >
+    <img src="/testfiles/image/static/static.png?2593219841" data-expectedresult="fail" aria-label="image-static-fail">
+    <div class="testcase-examplecontent" aria-label="image-static-example">Example Content</div>
+  </div>
+</section>
+
+
+
+<section class="testcase-panel">
+  <h2 aria-label="test-case-stylesheet" id="stylesheet">Stylesheet</h2>
+  <p>Stylesheet on an external stylesheet.</p>
+  <div class="testcase-area">
+    <div class="testcase-examplecontent" aria-label="stylesheet-example">Example Content</div>
+    <div class="testcase-expected-view" aria-label="stylesheet-example">Passed. Stylesheet was blocked.</div>
+    <div id="stylesheet-target" data-expectedresult="fail" aria-label="stylesheet-fail"></div>
+  </div>
+</section>
+
+<link rel="stylesheet" href="/testfiles/stylesheet/stylesheet.css?611587896">
+<script>
+  "use strict";
+  
+  function setAttributes(el, attrs) {
+    for (let key in attrs)
+      el.setAttribute(key, attrs[key]);
+  }
+
+  setTimeout(() => {
+    let target = document.getElementById("stylesheet-target");
+    let targetStyle = getComputedStyle(target);
+    if (targetStyle.width === "150px") {
+      target.innerHTML = "Failed. Stylesheet was NOT blocked.";
+    }
+    else {
+      target.innerHTML = "Passed. Stylesheet was blocked.";
+      // Style must be equal to .testcase-expected-view,
+      target.style = `flex-grow: 1;
+        padding: .5rem;
+        color: #fff;
+        background-color: #0dc74b;`;
+    }
+  }, 500);
+  
+  let image = document.createElement("img");
+  let area = document.getElementById("image-dynamic");
+  image.src = "/testfiles/image/dynamic/dynamic.png";
+  setAttributes(image, {"data-expectedresult": "fail", "aria-label": "dynamic-fail"});
+  area.appendChild(image);
+</script>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

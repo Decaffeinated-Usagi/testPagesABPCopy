@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>abort-on-property-read - ABP Test Pages</title>
+  <link rel="stylesheet" href="/css/testpages.css?204894239">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/abp-32.png?204894239">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="/lib/utils.js?666729525"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>abort-on-property-read</h2>
+      <p>Check that the abort-on-property-read snippet is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="basic-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-basic-usage" id="basic-usage">Basic usage</h2>
+  <p>Test that basic usage of the snippet works as expected.</p>
+  <div id="basic-target" class="testcase-area">
+    <div class="testcase-examplecontent" aria-label="basic-usage-example">Example Content</div>
+    <div class="testcase-waiting-content" aria-label="basic-usage-waiting">Waiting 500ms to trigger snippet...</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The script should be aborted and not add a red element to the test case above.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="basic-usage-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#$#abort-on-property-read aoprb</pre></li>
+  </ul>
+</section>
+
+<script src="/testfiles/abort-on-property-read/basic.js?666729525"></script>
+
+
+
+<section id="sub-property-section" class="testcase-panel">
+  <h2 aria-label="test-case-sub-property" id="sub-property">Sub property</h2>
+  <p>Test that usage of the snippet with sub properties works as expected.</p>
+  <div id="subproperty-target" class="testcase-area">
+    <div class="testcase-examplecontent" aria-label="sub-property-example">Example Content</div>
+    <div class="testcase-waiting-content" aria-label="sub-property-waiting">Waiting 500ms to trigger snippet...</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The script should be aborted and not add a red element to the test case above.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="sub-property-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#$#abort-on-property-read aopr.sp</pre></li>
+  </ul>
+</section>
+
+<script src="/testfiles/abort-on-property-read/subproperty.js?666729525"></script>
+
+
+
+<section id="function-property-section" class="testcase-panel">
+  <h2 aria-label="test-case-function-property" id="function-property">Function property</h2>
+  <p>Test that usage of the snippet with function properties works as expected.</p>
+  <div id="functionproperty-target" class="testcase-area">
+    <div class="testcase-examplecontent" aria-label="function-property-example">Example Content</div>
+    <div class="testcase-waiting-content" aria-label="function-property-waiting">Waiting 500ms to trigger snippet...</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The script should be aborted and not add a red element to the test case above.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="function-property-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#$#abort-on-property-read aoprf.fp</pre></li>
+  </ul>
+</section>
+
+<script src="/testfiles/abort-on-property-read/functionproperty.js?666729525"></script>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

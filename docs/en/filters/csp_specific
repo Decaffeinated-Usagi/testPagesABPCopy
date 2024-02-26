@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>CSP Specific site - ABP Test Pages</title>
+  <link rel="stylesheet" href="/css/testpages.css?348075789">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/abp-32.png?348075789">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="frame-src https://testpages.adblockplus.org/testfiles/csp_specific/frame.html">
+  <script src="/lib/utils.js?1266222980"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>CSP Specific site</h2>
+      <p>Check that a filter using the $csp filter option is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+
+<section id="specific-site-section" class="testcase-panel">
+  <h2 aria-label="test-case-specific-site" id="specific-site">Specific site</h2>
+  <p>Test that a filter using the $csp filter option works on a specific site.</p>
+  <div id="specific-site-area" class="testcase-area">
+    <div class="testcase-examplecontent">Example Content</div>
+    <div id="block-javascript" class="testcase-nostyle"></div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red image should be blocked and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="specific-site-filters" class="testcase-filters">
+    <li><pre>||testpages.adblockplus.org^$csp=script-src https://testpages.adblockplus.org/lib/utils.js</pre></li>
+  </ul>
+</section>
+
+<script>
+  "use strict";
+
+  let image = document.createElement("img");
+  image.src = "/testfiles/csp/image.png";
+  image.id = "specific-site-fail-1";
+  image.setAttribute("data-expectedresult", "fail");
+  document.getElementById("block-javascript").appendChild(image);
+</script>
+
+
+
+<section id="frame-src-section" class="testcase-panel">
+  <h2 aria-label="test-case-frame-src" id="frame-src">frame-src</h2>
+  <p>Test that a filter using the $csp filter option works on a specific site.</p>
+  <div id="frame-src-area" class="testcase-area">
+    <iframe src="/testfiles/csp_specific/expected.html" class="testcase-expected-view" style="border: 0; width: 200px; height: 100px; flex-grow: 1; padding: 0.5em; background-color: #0dc74b;"></iframe>
+    <iframe id="frame-src-target" src="/testfiles/csp_specific/frame.html" data-expectedresult="pass" style="border: 0; width: 200px; height: 100px;"></iframe>
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Check that the frame above is not blocked.</li>
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The frame above should be blocked.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="frame-src-filters" class="testcase-filters">
+    <li><pre>||testpages.adblockplus.org^$csp=frame-src 'none'</pre></li>
+  </ul>
+</section>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

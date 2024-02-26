@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>Third Party - ABP Test Pages</title>
+  <link rel="stylesheet" href="../../css/testpages_3146646906.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../images/abp-32.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="../../lib/utils.js"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>Third Party</h2>
+      <p>Check that a filter using the $third-party filter option is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+<!--CHANGE SOME PART HERE-->
+<section id="block-third-party-section" class="testcase-panel">
+  <h2 aria-label="test-case-block-third-party" id="block-third-party">Block Third Party</h2>
+  <p>Test that a filter using the $third-party filter option works a third party resource.</p>
+  <div id="block-third-party-area" class="testcase-area">
+    <img id="block-third-party-fail-1" style="padding: 0.5rem; background-color: #c70d2c; width: 166px; height: 166px;" src="https://gitlab.com/eyeo/developer-experience/testpages.adblockplus.org/-/raw/master/static/testfiles/third-party/adblockplus-icon-colour-web.svg" data-expectedresult="fail" data-dp="fail"/>
+    <img style="padding: 0.5rem; background-color: #0dc74b; width: 166px; height: 166px;" src="../../testfiles/third-party/adblockplus-icon-colour-web.svg" class="testcase-expected-view"/>
+    <img id="block-third-party-pass-1" style="padding: 0.5rem; background-color: #0dc74b; width: 166px; height: 166px;" src="../../testfiles/third-party/adblockplus-icon-colour-web.svg" data-expectedresult="pass" data-dp="pass"/>
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red logo should be blocked and the space collapsed.</li>
+    <li>The green logo containing should not be blocked.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="block-third-party-filters" class="testcase-filters">
+    <li><pre>adblockplus-icon-colour-web.svg$third-party</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="block-first-party-section" class="testcase-panel">
+  <h2 aria-label="test-case-block-first-party" id="block-first-party">Block First Party</h2>
+  <p>Test that a filter using the inverse $third-party filter option works a first party resource.</p>
+  <div id="block-first-party-area" class="testcase-area">
+    <img id="block-first-party-fail-1" style="padding: 0.5rem; color: #fff; background-color: #c70d2c;" src="/testfiles/third-party/abb-logo.png?3484168923" data-expectedresult="fail" data-dp="fail"/>
+    <img style="padding: 0.5rem; background-color: #0dc74b;" src="https://gitlab.com/eyeo/developer-experience/testpages.adblockplus.org/-/raw/master/static/testfiles/third-party/abb-logo.png" class="testcase-expected-view"/>
+    <img id="block-first-party-pass-1" style="padding: 0.5rem; background-color: #0dc74b;" src="https://gitlab.com/eyeo/developer-experience/testpages.adblockplus.org/-/raw/master/static/testfiles/third-party/abb-logo.png" data-expectedresult="pass" data-dp="pass"/>
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red logo should be blocked and the space collapsed.</li>
+    <li>The green logo containing should not be blocked.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="block-first-party-filters" class="testcase-filters">
+    <li><pre>abb-logo.png$~third-party</pre></li>
+  </ul>
+</section>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

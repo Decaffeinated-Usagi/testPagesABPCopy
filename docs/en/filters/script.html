@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>Script - ABP Test Pages</title>
+  <link rel="stylesheet" href="../../css/testpages.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../images/abp-32.png?3625456871">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="../../lib/utils.js_3122916910"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>Script</h2>
+      <p>Check that a filter using the $script filter option is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="script-section" class="testcase-panel">
+  <h2 aria-label="test-case-script" id="script">Script</h2>
+  <p>Test that a filter using the $script filter option works on an external script.</p>
+  <div id="script-target" class="testcase-area">
+    <div class="testcase-examplecontent" aria-label="script-example">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The script should be blocked and the red element should not be added to the page.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="script-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org/testfiles/script/$script</pre></li>
+  </ul>
+</section>
+
+<script src="../../testfiles/script/script.js_3122916910"></script>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

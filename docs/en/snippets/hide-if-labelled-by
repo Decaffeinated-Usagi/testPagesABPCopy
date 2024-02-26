@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>hide-if-labelled-by - ABP Test Pages</title>
+  <link rel="stylesheet" href="/css/testpages.css?383062418">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/abp-32.png?383062418">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="/lib/utils.js?517405865"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>hide-if-labelled-by</h2>
+      <p>Check that the hide-if-labelled-by snippet is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="basic-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-basic-usage" id="basic-usage">Basic usage</h2>
+  <p>Test that basic usage of the snippet works as expected.</p>
+  <div id="basic-usage-area" class="testcase-area">
+    <div class="testcase-examplecontent" aria-label="basic-usage-example">Example Content</div>
+    <div class="testcase-expected-view">Label</div>
+    <div id="hilb-label" data-expectedresult="pass" aria-label="basic-usage-pass">Label</div>
+    <div id="hilb-target" data-expectedresult="fail" aria-label="basic-usage-fail">
+      <div aria-labelledby="hilb-label">Label content</div>
+    </div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The green Label area should be visible, and the red Label Content area should be blocked.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="basic-usage-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#$#hide-if-labelled-by 'Label' '#hilb-target [aria-labelledby]' '#hilb-target'</pre></li>
+  </ul>
+</section>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

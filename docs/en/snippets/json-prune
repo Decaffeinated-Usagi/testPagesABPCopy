@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>JSON prune - ABP Test Pages</title>
+  <link rel="stylesheet" href="/css/testpages.css?2162403937">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/abp-32.png?2162403937">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="/lib/utils.js?2708385890"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>JSON prune</h2>
+      <p>Check if json-prune feature works properly.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="json-prune-section" class="testcase-panel">
+  <h2 aria-label="test-case-json-prune" id="json-prune">json-prune</h2>
+  <p>Test that basic usage of the json-prune snippet works as expected..</p>
+  <div id="json-prune-area" class="testcase-area">
+    <div class="testcase-examplecontent" aria-label="json-prune-example">Example Content</div>
+    <div class="testcase-waiting-content" aria-label="json-prune-waiting">Waiting 500ms to trigger snippet...</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red element in the test case above should be hidden.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="json-prune-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#$#json-prune 'data-expectedresult jsonprune aria-label' </pre></li>
+  </ul>
+  <h3>Notes</h3>
+  <p>Not supported in Chrome 73 (requires 74+)</p>
+</section>
+
+<script>
+  "use strict";
+
+  let propertiesToUse = '{"jsonprune": "true", "data-expectedresult": "fail", "aria-label":"json-prune-fail"}';
+  let propertiesObject;
+
+  setTimeout(() => {
+    propertiesObject = JSON.parse(propertiesToUse);
+  }, 100);
+
+  setTimeout(() => {
+    removeWaitingContent(); // eslint-disable-line no-undef
+    let targetTestCase = document.getElementById("json-prune-area");
+    let divToManipulate = document.createElement("div");
+    divToManipulate.id = "fail";
+    targetTestCase.appendChild(divToManipulate);
+
+    if (propertiesObject) {
+      for (let property in propertiesObject) {
+        let attr = document.createAttribute(property);
+        attr.value = propertiesObject[property];
+        document.getElementById("fail").setAttributeNode(attr);
+      }
+    }
+  }, 500);
+</script>
+
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

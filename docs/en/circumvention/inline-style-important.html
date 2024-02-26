@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>Inline Style !important - ABP Test Pages</title>
+  <link rel="stylesheet" href="../../css/testpages_3549942147.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../images/abp-32.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="../../lib/utils.js"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>Inline Style !important</h2>
+      <p>Check that inline style !important functionality is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="inline-style-important-section" class="testcase-panel">
+  <h2 aria-label="test-case-inline-style-important" id="inline-style-important">Inline style !important</h2>
+  <p>Test that inline style !important functionality blocks its targets.</p>
+  <div id="inline-style-important-area" class="testcase-area">
+    <div class="testcase-examplecontent" aria-label="inline-style-important-example">Example Content</div>
+    <div id="inline-style-important-fail-1" class="testcase-circ-is" data-expectedresult="fail" data-dp="fail" aria-label="inline-style-important-fail">Target without inline-style</div>
+    <div id="inline-style-important-fail-2" class="testcase-circ-is" data-expectedresult="fail" data-dp="fail" aria-label="inline-style-important2-fail"><div style="display: block !important;">Target with inline-style</div></div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red elements should be blocked and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="inline-style-important-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org##.testcase-circ-is</pre></li>
+  </ul>
+</section>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

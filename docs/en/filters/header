@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>Header - ABP Test Pages</title>
+  <link rel="stylesheet" href="/css/testpages.css?1573965682">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/abp-32.png?1573965682">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="/lib/utils.js?1510296732"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>Header</h2>
+      <p>Check that a filter using the $header filter option is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="script-section" class="testcase-panel">
+  <h2 aria-label="test-case-script" id="script">Script</h2>
+  <p>Test that a filter using the $header filter option works on an external script.</p>
+  <div id="script-target" class="testcase-area">
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The script should be blocked and the red element should not be added to the page.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="script-filters" class="testcase-filters">
+    <li><pre>||testpages.adblockplus.org/testfiles/header/$header=content-type=application/javascript</pre></li>
+  </ul>
+</section>
+
+<script src="/testfiles/header/script.js?1510296732"></script>
+
+
+
+<section id="image-section" class="testcase-panel">
+  <h2 aria-label="test-case-image" id="image">Image</h2>
+  <p>Test that a filter using the $header filter option works on an image.</p>
+  <div id="image-area" class="testcase-area">
+    <img id="image-fail-1" src="/testfiles/header/image.png?2508557812" data-expectedresult="fail">
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red image should be blocked and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="image-filters" class="testcase-filters">
+    <li><pre>||testpages.adblockplus.org/testfiles/header/image.png$header=content-type=image/png</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="comma-section" class="testcase-panel">
+  <h2 aria-label="test-case-comma" id="comma">Comma</h2>
+  <p>Test that a $header filter containing a comma (escaped as "\x2c") works on an image.</p>
+  <div id="comma-area" class="testcase-area">
+    <img id="comma-fail-1" src="/testfiles/header/image2.png?2508557812" data-expectedresult="fail">
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red image should be blocked and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="comma-filters" class="testcase-filters">
+    <li><pre>||testpages.adblockplus.org/testfiles/header/image2.png$header=date=\x2c</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="stylesheet-section" class="testcase-panel">
+  <h2 aria-label="test-case-stylesheet" id="stylesheet">Stylesheet</h2>
+  <p>Test that a filter using the $header filter option works on an external stylesheet.</p>
+  <div id="stylesheet-area" class="testcase-area">
+    <div class="testcase-examplecontent">Example Content</div>
+    <div class="testcase-expected-view">Passed. Stylesheet was blocked.</div>
+    <div id="stylesheet-target" data-expectedresult="fail"></div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The stylesheet should be blocked and the red element should not be added to the page.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="stylesheet-filters" class="testcase-filters">
+    <li><pre>||testpages.adblockplus.org/testfiles/header/$header=content-type=text/css</pre></li>
+  </ul>
+</section>
+
+<link rel="stylesheet" href="/testfiles/header/stylesheet.css?1573965682">
+
+<script>
+  "use strict";
+
+  setTimeout(() => {
+    let target = document.getElementById("stylesheet-target");
+    let targetStyle = getComputedStyle(target);
+    if (targetStyle.width === "150px") {
+      target.innerHTML = "Failed. Stylesheet was NOT blocked.";
+    }
+    else {
+      target.innerHTML = "Passed. Stylesheet was blocked.";
+      // Style must be equal to .testcase-expected-view,
+      target.style = `flex-grow: 1;
+        padding: .5rem;
+        color: #fff;
+        background-color: #0dc74b;`;
+    }
+  }, 500);
+</script>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

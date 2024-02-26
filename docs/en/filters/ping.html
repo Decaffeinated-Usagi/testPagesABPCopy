@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>Ping - ABP Test Pages</title>
+  <link rel="stylesheet" href="../../css/testpages.css?544879942">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../images/abp-32.png?544879942">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="../../lib/utils.js?2914558987"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>Ping</h2>
+      <p>Check that a filter using the $ping filter option is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="link-based-ping-section" class="testcase-panel">
+  <h2 aria-label="test-case-link-based-ping" id="link-based-ping">Link based ping</h2>
+  <p>Test that a filter using the $ping filter option works on a link based ping.</p>
+  <div id="link-based-ping-area" class="testcase-area">
+    <a href="#link" class="testcase-trigger" ping="https://testpages.adblockplus.org/en/filters/ping">Trigger link based ping</a>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>Click the link above.</li>
+    <li>The ping request should be blocked on the "Adblock Plus" tab in developer tools.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="link-based-ping-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org/*^$ping</pre></li>
+  </ul>
+  <h3>Known Issues</h3>
+  <p>Firefox - Ping request from links may be blocked by tracking protection.</p>
+</section>
+
+
+
+<section id="script-based-ping-section" class="testcase-panel">
+  <h2 aria-label="test-case-script-based-ping" id="script-based-ping">Script based ping</h2>
+  <p>Test that a filter using the $ping filter option works on a script based ping.</p>
+  <div id="script-based-ping-area" class="testcase-area">
+    <a id="script-ping-trigger" href="#script-ping" class="testcase-trigger" onclick="doPing()">Trigger script based ping</a>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>Click the link above.</li>
+    <li>The ping request should be blocked on the "Adblock Plus" tab in developer tools.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="script-based-ping-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org/*^$ping</pre></li>
+  </ul>
+</section>
+
+<script>
+  "use strict";
+
+  function doPing() {
+    navigator.sendBeacon("/en/filters/ping", "Testdata");
+  }
+</script>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

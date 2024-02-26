@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>Override Property Read - ABP Test Pages</title>
+  <link rel="stylesheet" href="/css/testpages.css?693147390">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/abp-32.png?693147390">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="/lib/utils.js?1485601515"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>Override Property Read</h2>
+      <p>Check if override-property-read feature works properly.</p>
+    </section>
+    
+
+    
+
+
+
+<script src="/testfiles/maybe-delayed/test.js?1485601515"></script>
+
+
+
+<section id="override-property-read-section" class="testcase-panel">
+  <h2 aria-label="test-case-override-property-read" id="override-property-read">override-property-read</h2>
+  <p>Test that basic usage of the snippet works as expected..</p>
+  <div id="basic-target" class="testcase-area">
+    <div class="testcase-examplecontent" aria-label="override-property-read-example">Example Content</div>
+    <div class="testcase-waiting-content" aria-label="override-property-read-waiting">Waiting 500ms to trigger snippet...</div>
+    <div id="to-be-overriden" data-expectedresult="fail" data-dp="fail"  aria-label="override-property-read-fail">Target</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red element in the test case above should be hidden.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="override-property-read-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#$#override-property-read overridePropertyRead.fp false </pre></li>
+  </ul>
+  <h3>Notes</h3>
+  <p>Not supported in Chrome 73 (requires 74+)</p>
+</section>
+
+<script>
+  "use strict";
+
+  var overridePropertyRead; // eslint-disable-line no-var
+
+  maybeDelayedTest(() => { // eslint-disable-line no-undef
+    overridePropertyRead = {fp: true};
+  });
+
+  setTimeout(() => {
+    removeWaitingContent(); // eslint-disable-line no-undef
+    if (!overridePropertyRead.fp) // eslint-disable-line no-undef
+      document.getElementById("to-be-overriden").hidden = true;
+  }, 500);
+</script>
+
+
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

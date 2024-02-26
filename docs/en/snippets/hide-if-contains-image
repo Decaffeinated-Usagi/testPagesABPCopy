@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>hide-if-contains-image - ABP Test Pages</title>
+  <link rel="stylesheet" href="/css/testpages.css?527968113">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/abp-32.png?527968113">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="/lib/utils.js?2712226623"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>hide-if-contains-image</h2>
+      <p>Check that the hide-if-contains-image snippet is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="basic-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-basic-usage" id="basic-usage">Basic usage</h2>
+  <p>Test that basic usage of the snippet works as expected.</p>
+  <div id="before-target" class="testcase-area">
+    <div class="testcase-examplecontent" aria-label="basic-usage-example">Example Content</div>
+    <div class="testcase-waiting-content" aria-label="basic-usage-waiting">Waiting 500ms to trigger snippet...</div>
+  </div>
+  <div id="after-target" class="testcase-area">
+    <div class="testcase-examplecontent">Example Content</div>
+    <div class="testcase-waiting-content" aria-label="basic-usage-waiting">Waiting 500ms to trigger snippet...</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red images in the test case above should be hidden.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="basic-usage-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#$#hide-if-contains-image /^89504e470d0a1a0a0000000d4948445200000064000000640802/ div[shouldhide] div</pre></li>
+  </ul>
+</section>
+
+<script>
+  "use strict";
+
+  setTimeout(() => {
+    removeWaitingContent(); // eslint-disable-line no-undef
+
+    let ad = document.createElement("div");
+    ad.id = Math.random().toString(36).substring(2);
+    ad.setAttribute("data-expectedresult", "fail");
+    ad.setAttribute("aria-label", "basic-usage-fail");
+    ad.setAttribute("shouldhide", "true");
+    ad.innerHTML = "<div style='padding: .5rem; width: 100px; height: 100px; background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAHYcAAB2HAY/l8WUAAADrSURBVHhe7dChAYBAEMCwA88m7L8Ca2F+gKtPTH2v73mHnfuUBbMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCswKzArMCs9Zmfv+MAcgY/EOpAAAAAElFTkSuQmCC)'>Should be hidden</div>"; // eslint-disable-line max-len
+
+    let ad2 = document.createElement("div");
+    ad2.id = Math.random().toString(36).substring(2);
+    ad2.setAttribute("data-expectedresult", "fail");
+    ad2.setAttribute("aria-label", "basic-usage-fail");
+    ad2.setAttribute("shouldhide", "true");
+    ad2.innerHTML = ad.innerHTML;
+
+    let before = document.getElementById("before-target");
+    before.insertBefore(ad, before.firstElementChild);
+
+    let after = document.getElementById("after-target");
+    after.appendChild(ad2);
+  }, 500);
+</script>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

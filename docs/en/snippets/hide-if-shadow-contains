@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>hide-if-shadow-contains - ABP Test Pages</title>
+  <link rel="stylesheet" href="/css/testpages.css?753301837">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/abp-32.png?753301837">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="/lib/utils.js?2185219882"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>hide-if-shadow-contains</h2>
+      <p>Check that the hide-if-shadow-contains snippet is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="basic-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-basic-usage" id="basic-usage">Basic usage</h2>
+  <p>Test that basic usage of the snippet works as expected.</p>
+  <div id="basic-target" class="testcase-area">
+    <div class="testcase-examplecontent" aria-label="basic-usage-example">Example Content</div>
+    <p data-expectedresult="fail" aria-label="basic-usage-fail"></p>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red element in the test case above should be hidden.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="basic-usage-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#$#hide-if-shadow-contains 'hisc-basic' p</pre></li>
+  </ul>
+  <h3>Notes</h3>
+  <p>Not supported in Chrome 52 (requires 53+)</p>
+  <p>Not supported in Firefox 58 (requires 63+ or 59+ with flag dom.webcomponents.shadowdom.enabled)</p>
+  <p>Not supported in Opera 39 (requires 40+)</p>
+  <p>Not supported in Edge (EdgeHTML)</p>
+</section>
+
+<script>
+  "use strict";
+
+  setTimeout(() => {
+    let root = document.getElementById("basic-target");
+    let failElement = document.createElement("div");
+    failElement.id = "hisc-basic-id";
+    failElement.setAttribute("data-expectedresult", "fail");
+    failElement.setAttribute("aria-label", "basic-usage-fail");
+    failElement.innerHTML = "<div><span>hisc-basic<br>Failed. Element is not hidden.</span></div>";
+    let shadowRoot = root.lastElementChild.attachShadow({mode: "closed"});
+    shadowRoot.appendChild(failElement);
+  }, 500);
+</script>
+
+
+
+<section id="regex-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-regex-usage" id="regex-usage">Regex usage</h2>
+  <p>Test that usage of the snippet with regex works as expected.</p>
+  <div id="regex-target" class="testcase-area">
+    <div class="testcase-examplecontent"  aria-label="regex-usage-example">Example Content</div>
+    <div class="testcase-waiting-content" aria-label="regex-usage-waiting">Waiting 500ms to trigger snippet...</div>
+    <div class="testcase-expected-view"><span>hisc-regex3<br>This element should not be hidden.</span></div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red elements in the test case above should be hidden and the green one not hidden.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="regex-usage-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#$#hide-if-shadow-contains '/hisc-regex[1-2]/' div</pre></li>
+  </ul>
+  <h3>Notes</h3>
+  <p>Not supported in Chrome 52 (requires 53+)</p>
+  <p>Not supported in Firefox 58 (requires 63+ or 59+ with flag dom.webcomponents.shadowdom.enabled)</p>
+  <p>Not supported in Opera 39 (requires 40+)</p>
+  <p>Not supported in Edge (EdgeHTML)</p>
+</section>
+
+<script>
+  "use strict";
+
+  setTimeout(() => {
+    removeWaitingContent(); // eslint-disable-line no-undef
+
+    let root = document.getElementById("regex-target");
+    for (let expectedResult of ["pass", "fail", "fail"]) {
+      let rootChild = document.createElement("div");
+      rootChild.setAttribute("data-expectedresult", expectedResult);
+      if (expectedResult == "fail")
+        rootChild.setAttribute("aria-label", "regex-usage-fail");
+      root.appendChild(rootChild);
+    }
+
+    let target = document.createElement("div");
+    target.id = "hisc-regex-id1";
+    target.setAttribute("data-expectedresult", "fail");
+    target.setAttribute("aria-label", "regex-usage-fail");
+    target.innerHTML = "<div><span>hisc-regex1<br>Failed. Element is not hidden.</span></div>";
+    let shadowRoot = root.lastElementChild.attachShadow({mode: "closed"});
+    shadowRoot.appendChild(target);
+
+    let target2 = document.createElement("div");
+    target2.id = "hisc-regex-id2";
+    target2.setAttribute("data-expectedresult", "fail");
+    target2.setAttribute("aria-label", "regex-usage-fail");
+    target2.innerHTML = "<div><span>hisc-regex2<br>Failed. Element is not hidden.</span></div>";
+    let shadowRoot2 = root.lastElementChild.previousElementSibling.attachShadow({mode: "closed"});
+    shadowRoot2.appendChild(target2);
+
+    let target3 = document.createElement("div");
+    target3.id = "hisc-basic-id3";
+    target3.setAttribute("data-expectedresult", "pass");
+    target3.setAttribute("aria-label", "regex-usage-pass");
+    target3.innerHTML = "<div><span>hisc-regex3<br>This element should not be hidden.</span></div>";
+    let shadowRoot3 = root.lastElementChild.previousElementSibling.previousElementSibling.attachShadow({mode: "closed"});
+    shadowRoot3.appendChild(target3);
+  }, 500);
+</script>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

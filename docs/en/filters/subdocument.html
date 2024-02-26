@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>Subdocument - ABP Test Pages</title>
+  <link rel="stylesheet" href="../../css/testpages.css?1375383929">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../images/abp-32.png?1375383929">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="../../lib/utils.js?171689579"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>Subdocument</h2>
+      <p>Check that a filter using the $subdocument filter option is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="subdocument-section" class="testcase-panel">
+  <h2 aria-label="test-case-subdocument" id="subdocument">Subdocument</h2>
+  <p>Test that a filter using the $subdocument filter option works on to block a subdocument.</p>
+  <div id="subdocument-area" class="testcase-area">
+    <iframe id="subdocument-fail-1" src="../../testfiles/subdocument/subdocument.html" style="border: 0; width: 100px; height: 100px;" data-expectedresult="fail" data-dp="fail" aria-label="subdocument-fail"></iframe>
+    <div class="testcase-examplecontent" aria-label="subdocument-example">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The subdocument should be blocked and the red element should not be added to the page.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="subdocument-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org/testfiles/subdocument/$subdocument</pre></li>
+  </ul>
+</section>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

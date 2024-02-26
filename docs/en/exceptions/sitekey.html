@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>Sitekey - ABP Test Pages</title>
+  <link rel="stylesheet" href="../../css/testpages_977373595.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../images/abp-32.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="../../lib/utils.js"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>Sitekey</h2>
+      <p>Check that a filter using the $sitekey exception filter option is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="sitekey-section" class="testcase-panel">
+  <h2 aria-label="test-case-sitekey" id="sitekey">Sitekey</h2>
+  <p>Test that a filter using the $sitekey option whitelists in frame elements.</p>
+  <h3>Out of frame elements</h3>
+  <div id="sitekey-area" class="testcase-area">
+    <div id="sitekey-fail-1" class="testcase-sitekey-eh" data-expectedresult="fail" data-dp="fail">Target element</div>
+    <div class="testcase-examplecontent">Example Content</div>
+    <img id="sitekey-fail-2" src="../../testfiles/sitekey/outofframe.png" data-expectedresult="fail" data-dp="fail">
+  </div>
+  <h3>In frame elements</h3>
+  <div id="sitekey-area" class="testcase-area">
+    
+    <iframe id="sitekey-frame" src="../../sitekey-frame.html" style="width: 100%;"></iframe>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1 and refresh page.</li>
+    <li>Make sure that in frame elements are not blocked.</li>
+    <li>Add filters #2, #3 and #4, and refresh page.</li>
+    <li>All elements should be blocked from both out of frame and in frame above.</li>
+    <li>Add filter #5 and refresh page.</li>
+    <li>Out of frame elements should keep blocked, and in frame elements should become unblocked.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="sitekey-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#@#[data-adblockkey]</pre></li>
+    <li><pre>testpages.adblockplus.org##.testcase-sitekey-eh</pre></li>
+    <li><pre>||testpages.adblockplus.org/testfiles/sitekey/outofframe.png</pre></li>
+    <li><pre>||testpages.adblockplus.org/testfiles/sitekey/inframe.png</pre></li>
+    <li><pre>@@$document,sitekey=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBANGtTstne7e8MbmDHDiMFkGbcuBgXmiVesGOG3gtYeM1EkrzVhBjGUvKXYE4GLFwqty3v5MuWWbvItUWBTYoVVsCAwEAAQ</pre></li>
+  </ul>
+</section>
+
+<script>
+  "use strict";
+
+  if (expectedParameter()) { // eslint-disable-line no-undef
+    let frameDoc = document.getElementById("sitekey-frame").contentDocument;
+    frameDoc.write(`
+      <body>
+        <style>
+          html,
+          body {
+            margin: 0;
+            height: 100%;
+          }
+
+          .testcase-sitekey-expected {
+            flex-grow: 1;
+            padding: 0.5rem;
+            color: #fff;
+            background-color: #0dc74b;
+          }
+        </style>
+        <div class="testcase-sitekey-expected">Exception Target</div>
+        <img src="/images/expected.png?2470552347"/>
+      </body>`);
+    frameDoc.close();
+  }
+</script>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

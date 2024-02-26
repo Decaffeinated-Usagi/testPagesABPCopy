@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>Rewrite - ABP Test Pages</title>
+  <link rel="stylesheet" href="/css/testpages.css?2176264993">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/abp-32.png?2176264993">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="/lib/utils.js?3564174638"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>Rewrite</h2>
+      <p>Check that a filter using the $rewrite filter option is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="script-section" class="testcase-panel">
+  <h2 aria-label="test-case-script" id="script">Script</h2>
+  <p>Test that a filter using the $rewrite filter option works on a script.</p>
+  <div id="rewrite-target" class="testcase-area">
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The script should be blocked and the red element should not be added to the page.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="script-filters" class="testcase-filters">
+    <li><pre>||testpages.adblockplus.org/testfiles/rewrite/*.js$rewrite=abp-resource:blank-js,domain=testpages.adblockplus.org</pre></li>
+  </ul>
+</section>
+
+<script src="/testfiles/rewrite/script.js?3564174638"></script>
+
+
+
+<section id="stylesheet-section" class="testcase-panel">
+  <h2 aria-label="test-case-stylesheet" id="stylesheet">Stylesheet</h2>
+  <p>Test the blank-css $rewrite filter option.</p>
+  <div id="stylesheet-area" class="testcase-area">
+    <div class="testcase-examplecontent">Example Content</div>
+    <div class="testcase-expected-view">Passed. Stylesheet was blocked.</div>
+    <div id="stylesheet-target" data-expectedresult="fail" data-dp="fail">Failed. Stylesheet was NOT blocked.</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The stylesheet should be blocked and the red element should be visible on the page.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="stylesheet-filters" class="testcase-filters">
+    <li><pre>||testpages.adblockplus.org/testfiles/rewrite/*.css$rewrite=abp-resource:blank-css,domain=testpages.adblockplus.org</pre></li>
+  </ul>
+</section>
+
+<link rel="stylesheet" href="/testfiles/rewrite/stylesheet.css?2176264993">
+
+<script>
+  "use strict";
+
+  setTimeout(() => {
+    let target = document.getElementById("stylesheet-target");
+    let targetStyle = getComputedStyle(target);
+    if (targetStyle.width === "150px") {
+      target.innerHTML = "Failed. Stylesheet was NOT blocked.";
+    }
+    else {
+      target.innerHTML = "Passed. Stylesheet was blocked.";
+      target.style.display = "none";
+      // Style must be equal to .testcase-expected-view,
+      target.style = `flex-grow: 1;
+        padding: .5rem;
+        color: #fff;
+        background-color: #0dc74b;`;
+    }
+  }, 200);
+</script>
+
+
+
+<section id="subdocument-section" class="testcase-panel">
+  <h2 aria-label="test-case-subdocument" id="subdocument">Subdocument</h2>
+  <p>Test the blank-html $rewrite filter option.</p>
+  <div id="subdocument-area" class="testcase-area">
+    <iframe id="subdocument-target" src="/testfiles/rewrite/subdocument.html?" style="border: 0; width: 100px; height: 100px;" data-expectedresult="fail" data-dp="fail"></iframe>
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The subdocument should be blocked and the red element should not be added to the page.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="subdocument-filters" class="testcase-filters">
+    <li><pre>||testpages.adblockplus.org/testfiles/rewrite/*.html$rewrite=abp-resource:blank-html,domain=testpages.adblockplus.org</pre></li>
+  </ul>
+</section>
+
+<script>
+  "use strict";
+
+  setTimeout(() => {
+    let target = document.getElementById("subdocument-target");
+    let contentDoc = null;
+
+    // Older versions of Chrome will throw an exception here when the
+    // iframe contentDocument is accessed, because the rewritten
+    // subdocument is technically cross-origin.
+    try {
+      contentDoc = target.contentDocument;
+    }
+    catch (ex) {
+      contentDoc = null;
+    }
+
+    if (contentDoc === null) {
+      target.style.display = "none";
+      target.setAttribute("data-expectedresult", "pass");
+      target.setAttribute("data-dp", "pass");
+      target.style.width = 0;
+      target.style.flexGrow = 0;
+      target.style.padding = 0;
+    }
+    else {
+      target.setAttribute("data-expectedresult", "fail");
+      target.setAttribute("data-dp", "fail");
+      target.style.width = 0;
+    }
+
+    if (expectedParameter()) // eslint-disable-line no-undef
+      expectedPageView(); // eslint-disable-line no-undef
+  }, 200);
+</script>
+
+
+
+<section id="text-section" class="testcase-panel">
+  <h2 aria-label="test-case-text" id="text">Text</h2>
+  <p>Test the blank-text $rewrite filter option.</p>
+  <div id="text-area" class="testcase-area">
+    <div id="text-status" class="testcase-trigger">Triggering request for text...</div>
+    <div class="testcase-expected-view">Passed. Text is blank.</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The requested text should be blank and not displayed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="text-filters" class="testcase-filters">
+    <li><pre>||testpages.adblockplus.org/testfiles/rewrite/*.txt$rewrite=abp-resource:blank-text,domain=testpages.adblockplus.org</pre></li>
+  </ul>
+</section>
+
+<script>
+  "use strict";
+
+  let req = new XMLHttpRequest();
+
+  req.onerror = function(e) {
+    let result = document.getElementById("text-status");
+    result.innerHTML = "Passed. Text is blank.";
+    result.setAttribute("data-expectedresult", "pass");
+    result.setAttribute("data-dp", "pass");
+  };
+  req.onload = function(e) {
+    let result = document.getElementById("text-status");
+
+    if (this.status == 200) {
+      if (this.responseText == "") {
+        result.innerHTML = "Passed. Text is blank.";
+        result.setAttribute("data-expectedresult", "pass");
+        result.setAttribute("data-dp", "pass");
+      }
+      else {
+        result.innerHTML = this.responseText;
+        result.setAttribute("data-expectedresult", "fail");
+        result.setAttribute("data-dp", "fail");
+      }
+    }
+  };
+
+  setTimeout(() => {
+    req.open("GET", "https://testpages.adblockplus.org/testfiles/rewrite/text.txt", true);
+    req.send();
+  }, 500);
+</script>
+
+
+
+<section id="1x1-gif-section" class="testcase-panel">
+  <h2 aria-label="test-case-1x1-gif" id="1x1-gif">1x1 GIF</h2>
+  <p>Test the 1x1-transparent-gif $rewrite filter option.</p>
+  <div id="1x1-gif-area" class="testcase-area">
+    <div class="testcase-examplecontent">
+      <img id="1x1-target" src="/testfiles/rewrite/1x1.gif?3333415566" data-expectedresult="fail" data-dp="fail">
+    </div>
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red image should be blocked and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="1x1-gif-filters" class="testcase-filters">
+    <li><pre>||testpages.adblockplus.org/testfiles/rewrite/1x1.gif$rewrite=abp-resource:1x1-transparent-gif,domain=testpages.adblockplus.org</pre></li>
+  </ul>
+</section>
+
+<script>
+  "use strict";
+
+  setTimeout(() => {
+    let target = document.getElementById("1x1-target");
+
+    if (target.width === 1) {
+      target.setAttribute("data-expectedresult", "pass");
+      target.setAttribute("data-dp", "pass");
+      target.width = 0;
+    }
+  }, 500);
+</script>
+
+
+
+<section id="2x2-png-section" class="testcase-panel">
+  <h2 aria-label="test-case-2x2-png" id="2x2-png">2x2 PNG</h2>
+  <p>Test the 2x2-transparent-png $rewrite filter option.</p>
+  <div id="2x2-png-area" class="testcase-area">
+    <div class="testcase-examplecontent">
+      <img id="2x2-target" src="/testfiles/rewrite/2x2.png?3333415566" data-expectedresult="fail" data-dp="fail">
+    </div>
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red image should be blocked and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="2x2-png-filters" class="testcase-filters">
+    <li><pre>||testpages.adblockplus.org/testfiles/rewrite/2x2.png$rewrite=abp-resource:2x2-transparent-png,domain=testpages.adblockplus.org</pre></li>
+  </ul>
+</section>
+
+<script>
+  "use strict";
+
+  setTimeout(() => {
+    let target = document.getElementById("2x2-target");
+
+    if (target.width === 2) {
+      target.setAttribute("data-expectedresult", "pass");
+      target.setAttribute("data-dp", "pass");
+      target.width = 0;
+    }
+  }, 500);
+</script>
+
+
+
+<section id="3x2-png-section" class="testcase-panel">
+  <h2 aria-label="test-case-3x2-png" id="3x2-png">3x2 PNG</h2>
+  <p>Test the 3x2-transparent-png $rewrite filter option.</p>
+  <div id="3x2-png-area" class="testcase-area">
+    <div class="testcase-examplecontent">
+      <img id="3x2-target" src="/testfiles/rewrite/3x2.png?3333415566" data-expectedresult="fail" data-dp="fail">
+    </div>
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red image should be blocked and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="3x2-png-filters" class="testcase-filters">
+    <li><pre>||testpages.adblockplus.org/testfiles/rewrite/3x2.png$rewrite=abp-resource:3x2-transparent-png,domain=testpages.adblockplus.org</pre></li>
+  </ul>
+</section>
+
+<script>
+  "use strict";
+
+  setTimeout(() => {
+    let target = document.getElementById("3x2-target");
+
+    if (target.width === 3) {
+      target.setAttribute("data-expectedresult", "pass");
+      target.setAttribute("data-dp", "pass");
+      target.width = 0;
+    }
+  }, 500);
+</script>
+
+
+
+<section id="32x32-png-section" class="testcase-panel">
+  <h2 aria-label="test-case-32x32-png" id="32x32-png">32x32 PNG</h2>
+  <p>Test the 32x32-transparent-png $rewrite filter option.</p>
+  <div id="32x32-png-area" class="testcase-area">
+    <div class="testcase-examplecontent">
+      <img id="32x32-target" src="/testfiles/rewrite/32x32.png?3333415566" data-expectedresult="fail" data-dp="fail">
+    </div>
+    <div class="testcase-examplecontent">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red image should be blocked and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="32x32-png-filters" class="testcase-filters">
+    <li><pre>||testpages.adblockplus.org/testfiles/rewrite/32x32.png$rewrite=abp-resource:32x32-transparent-png,domain=testpages.adblockplus.org</pre></li>
+  </ul>
+</section>
+
+<script>
+  "use strict";
+
+  setTimeout(() => {
+    let target = document.getElementById("32x32-target");
+
+    if (target.width === 32) {
+      target.setAttribute("data-expectedresult", "pass");
+      target.setAttribute("data-dp", "pass");
+      target.width = 0;
+    }
+  }, 500);
+</script>
+
+
+
+<section id="audio-section" class="testcase-panel">
+  <h2 aria-label="test-case-audio" id="audio">Audio</h2>
+  <p>Test that a filter using the $rewrite filter option works on an audio file.</p>
+  <div id="audio-area" class="testcase-area">
+    <audio id="mp3-target" class="testcase-nostyle"></audio>
+    <div class="testcase-examplecontent">Example Content</div>
+    <div class="testcase-expected-view">Duration:<br>0.1</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Check that the duration element shows more than one second length.</li>
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>Check that the duration element shows less than one second length.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="audio-filters" class="testcase-filters">
+    <li><pre>||testpages.adblockplus.org/testfiles/rewrite/*.mp3$rewrite=abp-resource:blank-mp3,domain=testpages.adblockplus.org</pre></li>
+  </ul>
+  <h3>Notes</h3>
+  <p>audio/mpeg (mp3) files are not supported in Chrome 63 (requires 64+)</p>
+  <p>audio/mpeg (mp3) files are not supported in Firefox 70 (requires 71+)</p>
+</section>
+
+
+
+<section id="video-section" class="testcase-panel">
+  <h2 aria-label="test-case-video" id="video">Video</h2>
+  <p>Test that a filter using the $rewrite filter option works on a video file.</p>
+  <div id="video-area" class="testcase-area">
+    <video id="mp4-target" style="display: none;"></video>
+    <div class="testcase-examplecontent">Example Content</div>
+    <div class="testcase-expected-view">Duration:<br>0</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The embedded video should be blocked.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="video-filters" class="testcase-filters">
+    <li><pre>||testpages.adblockplus.org/testfiles/rewrite/*.mp4$rewrite=abp-resource:blank-mp4,domain=testpages.adblockplus.org</pre></li>
+  </ul>
+  <h3>Notes</h3>
+  <p>video/mp4 files are not supported in Chrome 63 (requires 64+) nor in Chromium</p>
+</section>
+
+<script>
+  "use strict";
+
+  function printDuration(mediaElement) {
+    let duration = document.createElement("div");
+    // Truncate duration to one demical to avoid cross-browser differences
+    let durationValue = Math.floor(mediaElement.duration * 10) / 10;
+    duration.innerHTML = `Duration:<br>${durationValue}`;
+    if (mediaElement.duration < 1)
+      duration.setAttribute("data-expectedresult", "pass");
+    else
+      duration.setAttribute("data-expectedresult", "fail");
+
+    mediaElement.parentNode.appendChild(duration);
+  }
+
+  function printUnsupported(mediaElement, mediaKind) {
+    let durationElement = expectedParameter() ? // eslint-disable-line no-undef
+      mediaElement.parentNode.getElementsByClassName("testcase-expected-view")[0] :
+      document.createElement("div");
+
+    durationElement.className = "testcase-waiting-content";
+    durationElement.style = "display: block;";
+    durationElement.innerHTML = `${mediaKind} isn't supported on this browser`;
+
+    if (!expectedParameter()) // eslint-disable-line no-undef
+      mediaElement.parentNode.appendChild(durationElement);
+  }
+
+  function manageMedia(id, kind, file) {
+    let element = document.getElementById(id);
+
+    if (element.canPlayType(kind) == "") {
+      printUnsupported(element, kind);
+    }
+    else {
+      element.innerHTML = `<source src="/testfiles/rewrite/${file}?${Date.now()}" type="${kind}">`;
+      if (element.readyState >= 1)
+        printDuration(element);
+      else
+        element.addEventListener("loadedmetadata", () => printDuration(element));
+    }
+  }
+
+  manageMedia("mp3-target", "audio/mpeg", "audio.mp3");
+  if (typeof netscape != "undefined")
+    setTimeout(() => manageMedia("mp4-target", "video/mp4; codecs=\"avc1.42E01E\"", "video.mp4"), 200);
+  else
+    manageMedia("mp4-target", "video/mp4; codecs=\"avc1.42E01E\"", "video.mp4");
+</script>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

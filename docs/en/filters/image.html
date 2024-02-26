@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>Image - ABP Test Pages</title>
+  <link rel="stylesheet" href="../../css/testpages.css?2605683132">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../images/abp-32.png?2605683132">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="../../lib/utils.js?178356649"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>Image</h2>
+      <p>Check that a filter using the $image filter option is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="static-section" class="testcase-panel">
+  <h2 aria-label="test-case-static" id="static">Static</h2>
+  <p>Test that a filter using the $image filter option works on a static target.</p>
+  <div id="static-area" class="testcase-area" >
+    <img id="static-fail-1" src="../../testfiles/image/static/static.png_3055451052" data-expectedresult="fail" data-dp="fail" aria-label="static-fail">
+    <div class="testcase-examplecontent" aria-label="static-example">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red image should be blocked and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="static-filters" class="testcase-filters">
+    <li><pre>||testpages.adblockplus.org/testfiles/image/static/$image</pre></li>
+  </ul>
+</section>
+
+
+
+<section id="dynamic-section" class="testcase-panel">
+  <h2 aria-label="test-case-dynamic" id="dynamic">Dynamic</h2>
+  <p>Test that a filter using the $image filter option works on a dynamic target.</p>
+  <div id="image-dynamic" class="testcase-area">
+    <div class="testcase-examplecontent" aria-label="dynamic-example">Example Content</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The red image should be blocked and the space collapsed.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="dynamic-filters" class="testcase-filters">
+    <li><pre>||testpages.adblockplus.org/testfiles/image/dynamic/$image</pre></li>
+  </ul>
+</section>
+
+<script>
+  "use strict";
+
+  let image = document.createElement("img");
+  image.src = "../../testfiles/image/dynamic/dynamic.png";
+  image.setAttribute("data-expectedresult", "fail");
+  image.setAttribute("data-dp", "fail");
+  image.setAttribute("aria-label", "dynamic-fail");
+  image.id = "dynamic-fail-1";
+
+  let area = document.getElementById("image-dynamic");
+  area.appendChild(image);
+</script>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

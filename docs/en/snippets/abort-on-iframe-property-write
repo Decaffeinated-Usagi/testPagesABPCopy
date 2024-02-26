@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>abort-on-iframe-property-write - ABP Test Pages</title>
+  <link rel="stylesheet" href="/css/testpages.css?3117481292">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/abp-32.png?3117481292">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="/lib/utils.js?347710282"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>abort-on-iframe-property-write</h2>
+      <p>Check that the abort-on-iframe-property-write snippet is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+<script src="/testfiles/abort-on-iframe/utils.js?347710282"></script>
+
+
+
+<section id="basic-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-basic-usage" id="basic-usage">Basic usage</h2>
+  <p>Test that basic usage of the snippet works as expected.</p>
+  <div id="basic-target" class="testcase-area">
+    <div class="testcase-examplecontent" aria-label="basic-usage-example">Example Content</div>
+    <div class="testcase-waiting-content" aria-label="basic-usage-waiting">Waiting 500ms to trigger snippet...</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The script should be aborted and not add a red element to the test case above.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="basic-usage-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#$#abort-on-iframe-property-write aoipwb</pre></li>
+  </ul>
+</section>
+
+<script>
+  "use strict";
+
+  testAbortOnIframePropertyWrite("basic", ["aoipwb"]); // eslint-disable-line no-undef
+</script>
+
+
+
+<section id="sub-property-section" class="testcase-panel">
+  <h2 aria-label="test-case-sub-property" id="sub-property">Sub property</h2>
+  <p>Test that usage of the snippet with sub properties works as expected.</p>
+  <div id="subproperty-target" class="testcase-area">
+    <div class="testcase-examplecontent" aria-label="sub-property-example">Example Content</div>
+    <div class="testcase-waiting-content" aria-label="sub-property-waiting">Waiting 500ms to trigger snippet...</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The script should be aborted and not add a red element to the test case above.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="sub-property-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#$#abort-on-iframe-property-write aoipw.sp</pre></li>
+  </ul>
+</section>
+
+<script>
+  "use strict";
+
+  testAbortOnIframePropertyWrite("subproperty", ["aoipw.sp"], // eslint-disable-line no-undef
+                                 iframe => iframe.contentWindow.aoipw = {sp: false});
+</script>
+
+
+
+<section id="multiple-properties-section" class="testcase-panel">
+  <h2 aria-label="test-case-multiple-properties" id="multiple-properties">Multiple properties</h2>
+  <p>Test that usage of the snippet with multiple properties works as expected.</p>
+  <div id="multipleproperties-target" class="testcase-area">
+    <div class="testcase-examplecontent" aria-label="multiple-properties-example">Example Content</div>
+    <div class="testcase-waiting-content" aria-label="multiple-properties-waiting">Waiting 500ms to trigger snippet...</div>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>The script should be aborted and not add a red element to the test case above.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="multiple-properties-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org#$#abort-on-iframe-property-write aoipw1 aoipw2</pre></li>
+  </ul>
+</section>
+
+<script>
+  "use strict";
+
+  testAbortOnIframePropertyWrite("multipleproperties", ["aoipw1", "aoipw2"]);  // eslint-disable-line no-undef
+</script>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>

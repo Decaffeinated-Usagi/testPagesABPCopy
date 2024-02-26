@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>Ping Exception - ABP Test Pages</title>
+  <link rel="stylesheet" href="/css/testpages.css?3104443298">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/abp-32.png?3104443298">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="/lib/utils.js?733496659"></script>
+</head>
+  <body>
+    <header id="site-header">
+  <a href="/"><h1>ABP Test Pages</h1></a>
+</header>
+
+    
+    <section class="site-panel">
+      <h2>Ping Exception</h2>
+      <p>Check that usage of the $ping filter option in an exception is working as expected.</p>
+    </section>
+    
+
+    
+
+
+
+
+
+<section id="basic-usage-section" class="testcase-panel">
+  <h2 aria-label="test-case-basic-usage" id="basic-usage">Basic usage</h2>
+  <p>Test that the $ping filter option in an exception works.</p>
+  <div id="basic-usage-area" class="testcase-area">
+    <a href="#link" class="testcase-trigger" ping="https://testpages.adblockplus.org/en/exceptions/ping">Trigger link based ping</a>
+  </div>
+  <h3>Steps</h3>
+  <ul class="testcase-steps">
+    <li>Add filter #1.</li>
+    <li>Refresh page.</li>
+    <li>Click the link above.</li>
+    <li>The ping request should be blocked on the "Adblock Plus" tab in developer tools.</li>
+    <li>Add filter #2.</li>
+    <li>Refresh page.</li>
+    <li>Click the link above.</li>
+    <li>The ping request should become unblocked on the "Adblock Plus" tab in developer tools.</li>
+  </ul>
+  <h3>Filters</h3>
+  <ul id="basic-usage-filters" class="testcase-filters">
+    <li><pre>testpages.adblockplus.org/*^$ping</pre></li>
+    <li><pre>@@testpages.adblockplus.org/en/exceptions/ping*^$ping</pre></li>
+  </ul>
+  <h3>Known Issues</h3>
+  <p>Firefox - Ping request from links may be blocked by tracking protection.</p>
+</section>
+
+    <footer id="site-footer">
+  <p id="site-update">Last deploy: 26 June 2023</p>
+</footer>
+  </body>
+</html>
